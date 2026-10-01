@@ -1,0 +1,32 @@
+{
+  "mode": "full",
+  "questions": 40,
+  "answerable_questions": 30,
+  "unanswerable_questions": 10,
+  "retrieval": {
+    "recall_at_1": 0.6333333333333333,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "mrr": 0.8055555555555556,
+    "mean_gold_source_coverage_at_3": 0.4944444444444444,
+    "mean_gold_source_coverage_at_5": 0.65,
+    "all_gold_sources_recall_at_5": 0.26666666666666666,
+    "mean_gold_source_coverage_in_context": 0.8305555555555555,
+    "all_gold_sources_recall_in_context": 0.6,
+    "mean_context_unique_sources": 7.733333333333333
+  },
+  "generation": {
+    "abstention_accuracy": 0.975,
+    "mean_total_latency_sec": 10.3065775,
+    "mean_answer_latency_sec": 10.306575,
+    "citation_validity": 1.0,
+    "mean_fact_coverage_local_judge": 0.9583333333333334,
+    "judge_successful_calls": 29,
+    "judge_failed_calls": 0,
+    "answerable_abstentions_scored_zero": 1,
+    "judge_retries": 5,
+    "judge_per_fact_fallbacks": 0,
+    "judge_note": "Fact coverage is graded by the configured local Ollama model and is not an independent human score. Answerable abstentions are scored as zero coverage; judge parse failures are excluded and reported. If batch grading fails twice, expected facts are graded individually as a conservative fallback."
+  },
+  "retriever": "hybrid_dependency"
+}

@@ -3,6 +3,7 @@ from __future__ import annotations
 from transport_rag.config import Settings
 from transport_rag.generation.ollama import generate_with_ollama
 from transport_rag.retrieval.index import DenseIndex
+from transport_rag.retrieval.code_aware import CodeAwareRetriever
 from transport_rag.retrieval.rerank import rerank_with_ollama
 
 
@@ -13,9 +14,17 @@ class RAGService:
     def __init__(self, settings: Settings, retrieval_mode: str | None = None):
         self.settings = settings
         self.retrieval_mode = (retrieval_mode or settings.retrieval_mode).strip().lower()
-        if self.retrieval_mode not in {"dense", "hybrid", "hybrid_rerank"}:
-            raise ValueError("retrieval_mode must be 'dense', 'hybrid', or 'hybrid_rerank'")
+        if self.retrieval_mode not in {"dense", "hybrid", "hybrid_rerank", "code_hybrid", "hybrid_dependency"}:
+            raise ValueError(
+                "retrieval_mode must be 'dense', 'hybrid', 'hybrid_rerank', 'code_hybrid', "
+                "or 'hybrid_dependency'"
+            )
         self.index = DenseIndex.load(settings.index_dir, ollama_url=settings.ollama_url)
+        self.code_retriever = (
+            CodeAwareRetriever(self.index)
+            if self.retrieval_mode in {"code_hybrid", "hybrid_dependency"}
+            else None
+        )
 
     def _hybrid_rerank_once(self, question: str, k: int):
         candidate_k = max(self.settings.rerank_candidate_k, k)
@@ -40,7 +49,14 @@ class RAGService:
         if self.retrieval_mode == "hybrid_rerank":
             reranked_hits, _ = self._hybrid_rerank_once(question, k)
             return reranked_hits
-        if self.retrieval_mode == "hybrid":
+        if self.retrieval_mode == "code_hybrid":
+            return self.code_retriever.search(
+                question,
+                top_k=k,
+                candidate_k=self.settings.hybrid_candidate_k,
+                rrf_k=self.settings.rrf_k,
+            )
+        if self.retrieval_mode in {"hybrid", "hybrid_dependency"}:
             return self.index.hybrid_search(
                 question,
                 top_k=k,
@@ -50,12 +66,24 @@ class RAGService:
         return self.index.search(question, top_k=k)
 
     def retrieve_with_diagnostics(self, question: str, top_k: int | None = None) -> dict:
-        """Retrieve once and expose pre/post-rerank ordering for evaluation.
-
-        For V3 this avoids calling the reranker twice just to inspect its effect.
-        For other retrieval modes, pre and post lists are identical.
-        """
+        """Retrieve once and expose ranking diagnostics for evaluation."""
         k = top_k or self.settings.top_k
+        if self.retrieval_mode == "code_hybrid":
+            diagnostics = self.code_retriever.search_with_diagnostics(
+                question,
+                top_k=k,
+                candidate_k=self.settings.hybrid_candidate_k,
+                rrf_k=self.settings.rrf_k,
+            )
+            return {
+                "hits": diagnostics["hits"],
+                "pre_rerank_hits": diagnostics["hits"],
+                "rerank_candidate_hits": diagnostics["base_hits"],
+                "code_base_hits": diagnostics["base_hits"],
+                "code_symbol_hits": diagnostics["symbol_hits"],
+                "matched_symbols": diagnostics["matched_symbols"],
+            }
+
         if self.retrieval_mode == "hybrid_rerank":
             reranked_hits, hybrid_candidates = self._hybrid_rerank_once(question, k)
             return {
@@ -80,6 +108,14 @@ class RAGService:
         per-source cap and append only extra chunks from files that were already
         present in the primary retrieval set.
         """
+        if self.retrieval_mode in {"code_hybrid", "hybrid_dependency"}:
+            return self.code_retriever.expand_context(
+                question,
+                primary_hits,
+                candidate_k=self.settings.hybrid_candidate_k,
+                rrf_k=self.settings.rrf_k,
+                max_context_hits=max(12, max_context_hits),
+            )
         if self.retrieval_mode != "hybrid" or not primary_hits:
             return primary_hits
 

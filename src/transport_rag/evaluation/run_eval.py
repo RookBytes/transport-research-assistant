@@ -77,6 +77,23 @@ def recall_at(rank: int | None, k: int) -> float:
     return float(rank is not None and rank <= k)
 
 
+def source_coverage_at(retrieved_paths: list[str], gold_sources: list[str], k: int) -> float:
+    """Fraction of distinct gold source files present in the first k results."""
+    gold = set(gold_sources)
+    if not gold:
+        return 0.0
+    retrieved = set(retrieved_paths[:k])
+    return len(gold & retrieved) / len(gold)
+
+
+def all_gold_sources_at(retrieved_paths: list[str], gold_sources: list[str], k: int) -> float:
+    """Whether every distinct gold source is present in the first k results."""
+    gold = set(gold_sources)
+    if not gold:
+        return 0.0
+    return float(gold <= set(retrieved_paths[:k]))
+
+
 def cited_source_ids(answer: str) -> list[str]:
     return sorted(set(re.findall(r"\[S(\d+)\]", answer)))
 
@@ -289,6 +306,12 @@ def build_summary(rows: list[dict], mode: str, judge: bool) -> dict:
             "recall_at_3": mean(r["recall_at_3"] for r in answerable) if answerable else None,
             "recall_at_5": mean(r["recall_at_5"] for r in answerable) if answerable else None,
             "mrr": mean(r["reciprocal_rank"] for r in answerable) if answerable else None,
+            "mean_gold_source_coverage_at_3": mean(r["gold_source_coverage_at_3"] for r in answerable) if answerable else None,
+            "mean_gold_source_coverage_at_5": mean(r["gold_source_coverage_at_5"] for r in answerable) if answerable else None,
+            "all_gold_sources_recall_at_5": mean(r["all_gold_sources_at_5"] for r in answerable) if answerable else None,
+            "mean_gold_source_coverage_in_context": mean(r["gold_source_coverage_in_context"] for r in answerable) if answerable else None,
+            "all_gold_sources_recall_in_context": mean(r["all_gold_sources_in_context"] for r in answerable) if answerable else None,
+            "mean_context_unique_sources": mean(r["context_unique_source_count"] for r in answerable) if answerable else None,
         },
     }
 
@@ -357,6 +380,10 @@ def write_csv(path: Path, rows: list[dict]) -> None:
             "retrieved_sources",
             "pre_rerank_sources",
             "post_rerank_sources",
+            "code_base_sources",
+            "code_symbol_sources",
+            "matched_symbols",
+            "context_sources",
             "judge_details",
         ):
             if key in flat:
@@ -381,10 +408,12 @@ def main() -> None:
     parser.add_argument("--output", type=Path, default=Path("evals/results"))
     parser.add_argument(
         "--retriever",
-        choices=("dense", "hybrid", "hybrid_rerank"),
+        choices=("dense", "hybrid", "hybrid_rerank", "code_hybrid", "hybrid_dependency"),
         default="dense",
-        help=("dense = V1 semantic baseline; hybrid = V2 dense + BM25 + RRF; "
-              "hybrid_rerank = V3 hybrid candidates reranked by local LFM2.5."),
+        help=("dense = V1 semantic baseline; hybrid = V2/V2.3 dense + BM25 + RRF; "
+              "hybrid_rerank = rejected V3 local-LLM reranker; "
+              "code_hybrid = V4 symbol-aware ranking + dependency expansion; "
+              "hybrid_dependency = V2.3 hybrid ranking + V4 dependency expansion."),
     )
     parser.add_argument(
         "--mode",
@@ -433,6 +462,13 @@ def main() -> None:
         pre_labels = [hit_label(hit) for hit in pre_hits]
         post_labels = [hit_label(hit) for hit in hits]
 
+        # Measure the evidence set that would actually be sent to the generator.
+        # V2.3 hybrid expansion only adds same-source chunks; V4 code_hybrid may
+        # additionally follow symbol-definition edges across source files.
+        context_hits = service._expand_context_hits(item.question, hits)
+        context_paths = [hit.chunk.source_path for hit in context_hits]
+        context_unique_paths = list(dict.fromkeys(context_paths))
+
         row = {
             "id": item.id,
             "category": item.category,
@@ -446,6 +482,18 @@ def main() -> None:
             "recall_at_3": recall_at(rank, 3) if item.answerable else None,
             "recall_at_5": recall_at(rank, 5) if item.answerable else None,
             "reciprocal_rank": reciprocal_rank(rank) if item.answerable else None,
+            "gold_source_coverage_at_3": source_coverage_at(retrieved_paths, item.gold_sources, 3) if item.answerable else None,
+            "gold_source_coverage_at_5": source_coverage_at(retrieved_paths, item.gold_sources, 5) if item.answerable else None,
+            "all_gold_sources_at_5": all_gold_sources_at(retrieved_paths, item.gold_sources, 5) if item.answerable else None,
+            "context_sources": context_paths,
+            "context_hit_count": len(context_hits),
+            "context_unique_source_count": len(context_unique_paths),
+            "gold_source_coverage_in_context": source_coverage_at(
+                context_paths, item.gold_sources, len(context_paths)
+            ) if item.answerable else None,
+            "all_gold_sources_in_context": all_gold_sources_at(
+                context_paths, item.gold_sources, len(context_paths)
+            ) if item.answerable else None,
             "retrieval_latency_sec": round(retrieval_latency, 4),
         }
 
@@ -458,6 +506,18 @@ def main() -> None:
                     "gold_source_rank_after": rank,
                     "rerank_rank_change": compare_rank(rank_before, rank) if item.answerable else None,
                     "rerank_order_changed": pre_labels != post_labels,
+                }
+            )
+
+        if args.retriever == "code_hybrid":
+            code_base_hits = retrieval.get("code_base_hits", [])
+            code_symbol_hits = retrieval.get("code_symbol_hits", [])
+            row.update(
+                {
+                    "matched_symbols": retrieval.get("matched_symbols", []),
+                    "code_base_sources": [hit_label(hit) for hit in code_base_hits],
+                    "code_symbol_sources": [hit_label(hit) for hit in code_symbol_hits],
+                    "code_symbol_hit_count": len(code_symbol_hits),
                 }
             )
 

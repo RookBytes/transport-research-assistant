@@ -1,0 +1,19 @@
+{
+  "mode": "retrieval",
+  "questions": 25,
+  "answerable_questions": 20,
+  "unanswerable_questions": 5,
+  "retrieval": {
+    "recall_at_1": 0.5,
+    "recall_at_3": 0.8,
+    "recall_at_5": 1.0,
+    "mrr": 0.6725,
+    "mean_gold_source_coverage_at_3": 0.4458333333333333,
+    "mean_gold_source_coverage_at_5": 0.6916666666666667,
+    "all_gold_sources_recall_at_5": 0.25,
+    "mean_gold_source_coverage_in_context": 0.7833333333333333,
+    "all_gold_sources_recall_in_context": 0.45,
+    "mean_context_unique_sources": 7.8
+  },
+  "retriever": "code_hybrid"
+}

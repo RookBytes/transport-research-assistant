@@ -1,0 +1,2014 @@
+[
+  {
+    "id": "q001",
+    "category": "preprocessing",
+    "difficulty": "easy",
+    "answerable": true,
+    "question": "What are the five preprocessing stages, in order?",
+    "gold_sources": [
+      "preprocessing/README.md"
+    ],
+    "retrieved_sources": [
+      "README.md",
+      "preprocessing/README.md",
+      "preprocessing/run_all_pipeline.py"
+    ],
+    "gold_source_rank": 2,
+    "recall_at_1": 0.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 0.5,
+    "gold_source_coverage_at_3": 1.0,
+    "gold_source_coverage_at_5": 1.0,
+    "all_gold_sources_at_5": 1.0,
+    "retrieval_latency_sec": 1.0579,
+    "matched_symbols": [
+      "Preprocessing"
+    ],
+    "code_base_sources": [
+      "preprocessing/README.md:1-38",
+      "preprocessing/README.md:701-769",
+      "preprocessing/README.md:914-963",
+      "preprocessing/run_all_pipeline.py:1-53",
+      "README.md:69-123",
+      "preprocessing/README.md:766-836",
+      "preprocessing/README.md:212-275",
+      "preprocessing/README.md:35-87",
+      "preprocessing/README.md:833-917",
+      "preprocessing/README.md:1039-1062"
+    ],
+    "code_symbol_sources": [
+      "README.md:69-123"
+    ],
+    "code_symbol_hit_count": 1
+  },
+  {
+    "id": "q002",
+    "category": "preprocessing",
+    "difficulty": "medium",
+    "answerable": true,
+    "question": "Which preprocessing stages depend directly on the map-matched output from stage 1, and which later stage depends on OD route shares?",
+    "gold_sources": [
+      "preprocessing/README.md"
+    ],
+    "retrieved_sources": [
+      "preprocessing/README.md",
+      "preprocessing/3_build_od_route_shares.py",
+      "preprocessing/run_all_pipeline.py",
+      "simulation/src/main/java/porto/sweep/eval/JaccardEvaluator.java",
+      "README.md"
+    ],
+    "gold_source_rank": 1,
+    "recall_at_1": 1.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 1.0,
+    "gold_source_coverage_at_3": 1.0,
+    "gold_source_coverage_at_5": 1.0,
+    "all_gold_sources_at_5": 1.0,
+    "retrieval_latency_sec": 0.9225,
+    "matched_symbols": [
+      "MATCHED",
+      "Preprocessing"
+    ],
+    "code_base_sources": [
+      "preprocessing/README.md:35-87",
+      "preprocessing/README.md:1-38",
+      "preprocessing/3_build_od_route_shares.py:1-51",
+      "preprocessing/README.md:914-963",
+      "preprocessing/README.md:381-448",
+      "preprocessing/README.md:212-275",
+      "preprocessing/run_all_pipeline.py:553-610",
+      "preprocessing/README.md:701-769",
+      "preprocessing/README.md:766-836",
+      "preprocessing/README.md:833-917"
+    ],
+    "code_symbol_sources": [
+      "simulation/src/main/java/porto/sweep/eval/JaccardEvaluator.java:1-35",
+      "README.md:69-123"
+    ],
+    "code_symbol_hit_count": 2
+  },
+  {
+    "id": "q003",
+    "category": "preprocessing",
+    "difficulty": "medium",
+    "answerable": true,
+    "question": "What sequence fields does the map matcher write for a successful trip, and what consistency conditions should hold between them?",
+    "gold_sources": [
+      "preprocessing/README.md"
+    ],
+    "retrieved_sources": [
+      "preprocessing/README.md",
+      "preprocessing/1_porto_map_match.py",
+      "simulation/src/main/java/porto/sweep/eval/JaccardEvaluator.java",
+      "README.md",
+      "simulation/src/main/java/porto/sweep/io/SimpleCsv.java",
+      "simulation/README.md"
+    ],
+    "gold_source_rank": 1,
+    "recall_at_1": 1.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 1.0,
+    "gold_source_coverage_at_3": 1.0,
+    "gold_source_coverage_at_5": 1.0,
+    "all_gold_sources_at_5": 1.0,
+    "retrieval_latency_sec": 1.0896,
+    "matched_symbols": [],
+    "code_base_sources": [
+      "preprocessing/README.md:272-333",
+      "preprocessing/1_porto_map_match.py:1-59",
+      "simulation/src/main/java/porto/sweep/eval/JaccardEvaluator.java:32-67",
+      "README.md:1-29",
+      "simulation/src/main/java/porto/sweep/io/SimpleCsv.java:1-49",
+      "simulation/README.md:171-197"
+    ],
+    "code_symbol_sources": [],
+    "code_symbol_hit_count": 0
+  },
+  {
+    "id": "q004",
+    "category": "preprocessing",
+    "difficulty": "hard",
+    "answerable": true,
+    "question": "How is background traffic inferred from observed edge travel times?",
+    "gold_sources": [
+      "preprocessing/README.md",
+      "preprocessing/2_infer_background_from_edge_times.py"
+    ],
+    "retrieved_sources": [
+      "preprocessing/2_infer_background_from_edge_times.py",
+      "preprocessing/README.md",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java",
+      "simulation/src/main/java/porto/sweep/sim/ObjectiveMetricsAccumulator.java",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java",
+      "preprocessing/4_generate_candidate_paths.py"
+    ],
+    "gold_source_rank": 1,
+    "recall_at_1": 1.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 1.0,
+    "gold_source_coverage_at_3": 1.0,
+    "gold_source_coverage_at_5": 1.0,
+    "all_gold_sources_at_5": 1.0,
+    "retrieval_latency_sec": 1.0073,
+    "matched_symbols": [],
+    "code_base_sources": [
+      "preprocessing/2_infer_background_from_edge_times.py:1-52",
+      "preprocessing/README.md:330-384",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java:1899-1932",
+      "simulation/src/main/java/porto/sweep/sim/ObjectiveMetricsAccumulator.java:281-326",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java:50-81",
+      "preprocessing/4_generate_candidate_paths.py:461-501"
+    ],
+    "code_symbol_sources": [],
+    "code_symbol_hit_count": 0
+  },
+  {
+    "id": "q005",
+    "category": "preprocessing",
+    "difficulty": "medium",
+    "answerable": true,
+    "question": "Why should sim_edge_lookup_freeflow.csv be used with the inferred background traffic instead of an already-congested observed-time lookup?",
+    "gold_sources": [
+      "preprocessing/README.md"
+    ],
+    "retrieved_sources": [
+      "preprocessing/2_infer_background_from_edge_times.py",
+      "preprocessing/README.md",
+      "simulation/src/main/java/porto/sweep/sim/SweepRunResult.java",
+      "preprocessing/run_all_pipeline.py",
+      "simulation/README.md",
+      "simulation/examples/quickstart.properties"
+    ],
+    "gold_source_rank": 2,
+    "recall_at_1": 0.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 0.5,
+    "gold_source_coverage_at_3": 1.0,
+    "gold_source_coverage_at_5": 1.0,
+    "all_gold_sources_at_5": 1.0,
+    "retrieval_latency_sec": 0.9982,
+    "matched_symbols": [],
+    "code_base_sources": [
+      "preprocessing/2_infer_background_from_edge_times.py:1-52",
+      "preprocessing/README.md:330-384",
+      "simulation/src/main/java/porto/sweep/sim/SweepRunResult.java:91-106",
+      "preprocessing/run_all_pipeline.py:497-556",
+      "simulation/README.md:92-115",
+      "simulation/examples/quickstart.properties:1-47"
+    ],
+    "code_symbol_sources": [],
+    "code_symbol_hit_count": 0
+  },
+  {
+    "id": "q006",
+    "category": "preprocessing",
+    "difficulty": "medium",
+    "answerable": true,
+    "question": "What does the OD route-share stage aggregate, and what does its default minimum route frequency do?",
+    "gold_sources": [
+      "preprocessing/README.md"
+    ],
+    "retrieved_sources": [
+      "preprocessing/README.md",
+      "preprocessing/3_build_od_route_shares.py",
+      "preprocessing/run_all_pipeline.py",
+      "simulation/README.md"
+    ],
+    "gold_source_rank": 1,
+    "recall_at_1": 1.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 1.0,
+    "gold_source_coverage_at_3": 1.0,
+    "gold_source_coverage_at_5": 1.0,
+    "all_gold_sources_at_5": 1.0,
+    "retrieval_latency_sec": 0.9801,
+    "matched_symbols": [
+      "aggregate"
+    ],
+    "code_base_sources": [
+      "preprocessing/README.md:381-448",
+      "preprocessing/3_build_od_route_shares.py:1-51",
+      "preprocessing/run_all_pipeline.py:553-610",
+      "simulation/README.md:92-115",
+      "preprocessing/README.md:766-836",
+      "preprocessing/README.md:212-275",
+      "simulation/README.md:155-174",
+      "preprocessing/3_build_od_route_shares.py:48-96",
+      "simulation/README.md:112-135",
+      "preprocessing/README.md:35-87"
+    ],
+    "code_symbol_sources": [
+      "preprocessing/3_build_od_route_shares.py:244-266"
+    ],
+    "code_symbol_hit_count": 1
+  },
+  {
+    "id": "q007",
+    "category": "preprocessing",
+    "difficulty": "medium",
+    "answerable": true,
+    "question": "What candidate-route families can stage 4 generate?",
+    "gold_sources": [
+      "preprocessing/README.md",
+      "preprocessing/4_generate_candidate_paths.py"
+    ],
+    "retrieved_sources": [
+      "preprocessing/README.md",
+      "preprocessing/4_generate_candidate_paths.py",
+      "README.md",
+      "preprocessing/run_all_pipeline.py",
+      "simulation/README.md"
+    ],
+    "gold_source_rank": 1,
+    "recall_at_1": 1.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 1.0,
+    "gold_source_coverage_at_3": 1.0,
+    "gold_source_coverage_at_5": 1.0,
+    "all_gold_sources_at_5": 1.0,
+    "retrieval_latency_sec": 1.0333,
+    "matched_symbols": [
+      "Candidate"
+    ],
+    "code_base_sources": [
+      "preprocessing/README.md:35-87",
+      "preprocessing/README.md:445-521",
+      "preprocessing/4_generate_candidate_paths.py:1-79",
+      "preprocessing/README.md:1-38",
+      "README.md:1-29",
+      "preprocessing/README.md:1039-1062",
+      "preprocessing/run_all_pipeline.py:553-610",
+      "preprocessing/README.md:833-917",
+      "preprocessing/4_generate_candidate_paths.py:554-597",
+      "simulation/README.md:1-38"
+    ],
+    "code_symbol_sources": [
+      "preprocessing/4_generate_candidate_paths.py:76-133"
+    ],
+    "code_symbol_hit_count": 1
+  },
+  {
+    "id": "q008",
+    "category": "preprocessing",
+    "difficulty": "medium",
+    "answerable": true,
+    "question": "What delimiter format must candidate route_node_seq and edge_seq use for the Java loader?",
+    "gold_sources": [
+      "preprocessing/README.md"
+    ],
+    "retrieved_sources": [
+      "preprocessing/README.md",
+      "simulation/README.md",
+      "preprocessing/run_all_pipeline.py",
+      "preprocessing/4_generate_candidate_paths.py",
+      "preprocessing/3_build_od_route_shares.py",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java"
+    ],
+    "gold_source_rank": 1,
+    "recall_at_1": 1.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 1.0,
+    "gold_source_coverage_at_3": 1.0,
+    "gold_source_coverage_at_5": 1.0,
+    "all_gold_sources_at_5": 1.0,
+    "retrieval_latency_sec": 1.0088,
+    "matched_symbols": [
+      "Candidate"
+    ],
+    "code_base_sources": [
+      "preprocessing/README.md:575-638",
+      "simulation/README.md:92-115",
+      "preprocessing/README.md:445-521",
+      "preprocessing/README.md:518-578",
+      "preprocessing/run_all_pipeline.py:227-265",
+      "preprocessing/4_generate_candidate_paths.py:1-79",
+      "preprocessing/run_all_pipeline.py:182-230",
+      "preprocessing/README.md:635-704",
+      "preprocessing/3_build_od_route_shares.py:1-51",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java:50-81"
+    ],
+    "code_symbol_sources": [
+      "preprocessing/4_generate_candidate_paths.py:76-133"
+    ],
+    "code_symbol_hit_count": 1
+  },
+  {
+    "id": "q009",
+    "category": "preprocessing",
+    "difficulty": "medium",
+    "answerable": true,
+    "question": "What are the two stage-5 rerouting graph outputs, and what does each use as its weight?",
+    "gold_sources": [
+      "preprocessing/README.md"
+    ],
+    "retrieved_sources": [
+      "preprocessing/README.md",
+      "simulation/README.md",
+      "README.md",
+      "preprocessing/run_all_pipeline.py",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java"
+    ],
+    "gold_source_rank": 1,
+    "recall_at_1": 1.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 1.0,
+    "gold_source_coverage_at_3": 1.0,
+    "gold_source_coverage_at_5": 1.0,
+    "all_gold_sources_at_5": 1.0,
+    "retrieval_latency_sec": 1.0029,
+    "matched_symbols": [],
+    "code_base_sources": [
+      "preprocessing/README.md:212-275",
+      "simulation/README.md:92-115",
+      "README.md:26-72",
+      "preprocessing/run_all_pipeline.py:607-612",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java:1214-1255",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java:50-81"
+    ],
+    "code_symbol_sources": [],
+    "code_symbol_hit_count": 0
+  },
+  {
+    "id": "q010",
+    "category": "preprocessing",
+    "difficulty": "hard",
+    "answerable": true,
+    "question": "Why does the preprocessing documentation recommend using the same GraphML for map matching, background inference, route generation, and rerouting conversion?",
+    "gold_sources": [
+      "preprocessing/README.md"
+    ],
+    "retrieved_sources": [
+      "preprocessing/README.md",
+      "README.md",
+      "preprocessing/1_porto_map_match.py"
+    ],
+    "gold_source_rank": 1,
+    "recall_at_1": 1.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 1.0,
+    "gold_source_coverage_at_3": 1.0,
+    "gold_source_coverage_at_5": 1.0,
+    "all_gold_sources_at_5": 1.0,
+    "retrieval_latency_sec": 1.0636,
+    "matched_symbols": [
+      "Preprocessing",
+      "Background inference",
+      "Map matching"
+    ],
+    "code_base_sources": [
+      "preprocessing/README.md:1-38",
+      "README.md:26-72",
+      "preprocessing/1_porto_map_match.py:893-934",
+      "preprocessing/README.md:833-917",
+      "preprocessing/README.md:914-963",
+      "preprocessing/README.md:1039-1062",
+      "preprocessing/README.md:445-521",
+      "preprocessing/README.md:84-139",
+      "preprocessing/README.md:212-275",
+      "preprocessing/README.md:35-87"
+    ],
+    "code_symbol_sources": [
+      "README.md:69-123",
+      "preprocessing/README.md:701-769"
+    ],
+    "code_symbol_hit_count": 2
+  },
+  {
+    "id": "q011",
+    "category": "configuration",
+    "difficulty": "easy",
+    "answerable": true,
+    "question": "What are the default seed, number of taxis, and total trips in SweepConfig when they are not specified?",
+    "gold_sources": [
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java"
+    ],
+    "retrieved_sources": [
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java",
+      "simulation/README.md",
+      "simulation/src/main/java/porto/sweep/sim/SweepParameters.java",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java",
+      "simulation/src/main/java/porto/sweep/sim/SweepRunResult.java"
+    ],
+    "gold_source_rank": 1,
+    "recall_at_1": 1.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 1.0,
+    "gold_source_coverage_at_3": 1.0,
+    "gold_source_coverage_at_5": 1.0,
+    "all_gold_sources_at_5": 1.0,
+    "retrieval_latency_sec": 0.9129,
+    "matched_symbols": [
+      "SweepConfig"
+    ],
+    "code_base_sources": [
+      "simulation/README.md:1-38",
+      "simulation/README.md:112-135",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java:1-53",
+      "simulation/src/main/java/porto/sweep/sim/SweepParameters.java:1-27",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java:102-126",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java:129-159",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java:261-287",
+      "simulation/src/main/java/porto/sweep/sim/SweepRunResult.java:1-34",
+      "simulation/README.md:132-158",
+      "simulation/README.md:92-115"
+    ],
+    "code_symbol_sources": [
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java:1-53"
+    ],
+    "code_symbol_hit_count": 1
+  },
+  {
+    "id": "q012",
+    "category": "configuration",
+    "difficulty": "easy",
+    "answerable": true,
+    "question": "Which tripStartMode values are accepted, and what does immediate mode mean?",
+    "gold_sources": [
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java",
+      "simulation/README.md"
+    ],
+    "retrieved_sources": [
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java",
+      "simulation/examples/quickstart.properties",
+      "simulation/README.md",
+      "simulation/src/main/java/porto/sweep/sim/SweepRunResult.java",
+      "preprocessing/1_porto_map_match.py",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java"
+    ],
+    "gold_source_rank": 1,
+    "recall_at_1": 1.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 1.0,
+    "gold_source_coverage_at_3": 1.0,
+    "gold_source_coverage_at_5": 1.0,
+    "all_gold_sources_at_5": 1.0,
+    "retrieval_latency_sec": 0.9297,
+    "matched_symbols": [
+      "tripStartMode"
+    ],
+    "code_base_sources": [
+      "simulation/README.md:112-135",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java:129-159",
+      "simulation/src/main/java/porto/sweep/sim/SweepRunResult.java:121-126",
+      "preprocessing/1_porto_map_match.py:566-609",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java:1-53",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java:867-892",
+      "simulation/examples/quickstart.properties:1-47",
+      "simulation/README.md:171-197",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java:539-567",
+      "simulation/README.md:155-174"
+    ],
+    "code_symbol_sources": [
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java:1-53",
+      "simulation/examples/quickstart.properties:1-47"
+    ],
+    "code_symbol_hit_count": 2
+  },
+  {
+    "id": "q013",
+    "category": "configuration",
+    "difficulty": "medium",
+    "answerable": true,
+    "question": "What validation rules are applied to hourlyDemandWeights?",
+    "gold_sources": [
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java"
+    ],
+    "retrieved_sources": [
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java",
+      "simulation/README.md",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java",
+      "simulation/src/main/java/porto/sweep/sim/ObjectiveMetricsAccumulator.java",
+      "README.md"
+    ],
+    "gold_source_rank": 1,
+    "recall_at_1": 1.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 1.0,
+    "gold_source_coverage_at_3": 1.0,
+    "gold_source_coverage_at_5": 1.0,
+    "all_gold_sources_at_5": 1.0,
+    "retrieval_latency_sec": 0.9038,
+    "matched_symbols": [
+      "hourlyDemandWeights"
+    ],
+    "code_base_sources": [
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java:129-159",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java:156-173",
+      "simulation/README.md:112-135",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java:705-742",
+      "simulation/src/main/java/porto/sweep/sim/ObjectiveMetricsAccumulator.java:323-352",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java:1-53",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java:236-265",
+      "README.md:120-129",
+      "simulation/src/main/java/porto/sweep/sim/ObjectiveMetricsAccumulator.java:97-140",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java:78-105"
+    ],
+    "code_symbol_sources": [
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java:1-53"
+    ],
+    "code_symbol_hit_count": 1
+  },
+  {
+    "id": "q014",
+    "category": "configuration",
+    "difficulty": "easy",
+    "answerable": true,
+    "question": "Which edgeHabitMode values are accepted?",
+    "gold_sources": [
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java",
+      "simulation/README.md"
+    ],
+    "retrieved_sources": [
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java",
+      "simulation/README.md",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java",
+      "simulation/src/main/java/porto/sweep/sim/TaxiState.java",
+      "preprocessing/4_generate_candidate_paths.py",
+      "simulation/examples/quickstart.properties"
+    ],
+    "gold_source_rank": 1,
+    "recall_at_1": 1.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 1.0,
+    "gold_source_coverage_at_3": 1.0,
+    "gold_source_coverage_at_5": 1.0,
+    "all_gold_sources_at_5": 1.0,
+    "retrieval_latency_sec": 0.9071,
+    "matched_symbols": [
+      "edgeHabitMode"
+    ],
+    "code_base_sources": [
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java:170-186",
+      "simulation/README.md:112-135",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java:1031-1080",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java:978-1034",
+      "simulation/src/main/java/porto/sweep/sim/TaxiState.java:88-99",
+      "preprocessing/4_generate_candidate_paths.py:178-207",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java:50-81",
+      "simulation/README.md:92-115",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java:156-173",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java:1-53"
+    ],
+    "code_symbol_sources": [
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java:1-53",
+      "simulation/examples/quickstart.properties:1-47",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java:50-81"
+    ],
+    "code_symbol_hit_count": 3
+  },
+  {
+    "id": "q015",
+    "category": "configuration",
+    "difficulty": "medium",
+    "answerable": true,
+    "question": "What are the default rerouteTopK, rerouteMaxRelTime, and rerouteMaxEdgeJaccard values in SweepConfig?",
+    "gold_sources": [
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java"
+    ],
+    "retrieved_sources": [
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java",
+      "simulation/examples/quickstart.properties",
+      "simulation/README.md",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java",
+      "simulation/src/main/java/porto/sweep/sim/SweepParameters.java",
+      "simulation/src/main/java/porto/sweep/config/TaxiClassProfile.java"
+    ],
+    "gold_source_rank": 1,
+    "recall_at_1": 1.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 1.0,
+    "gold_source_coverage_at_3": 1.0,
+    "gold_source_coverage_at_5": 1.0,
+    "all_gold_sources_at_5": 1.0,
+    "retrieval_latency_sec": 0.8897,
+    "matched_symbols": [
+      "rerouteMaxEdgeJaccard",
+      "rerouteMaxRelTime",
+      "rerouteTopK",
+      "SweepConfig"
+    ],
+    "code_base_sources": [
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java:1-53",
+      "simulation/README.md:112-135",
+      "simulation/README.md:92-115",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java:604-639",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java:156-173",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java:1100-1137",
+      "simulation/src/main/java/porto/sweep/sim/SweepParameters.java:45-73",
+      "simulation/src/main/java/porto/sweep/config/TaxiClassProfile.java:49-77",
+      "simulation/examples/quickstart.properties:1-47",
+      "simulation/README.md:132-158"
+    ],
+    "code_symbol_sources": [
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java:1-53",
+      "simulation/examples/quickstart.properties:1-47"
+    ],
+    "code_symbol_hit_count": 2
+  },
+  {
+    "id": "q016",
+    "category": "configuration",
+    "difficulty": "medium",
+    "answerable": true,
+    "question": "What are the defaults for learning completed routes as future candidate routes?",
+    "gold_sources": [
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java"
+    ],
+    "retrieved_sources": [
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java",
+      "preprocessing/4_generate_candidate_paths.py",
+      "preprocessing/README.md",
+      "README.md",
+      "simulation/README.md"
+    ],
+    "gold_source_rank": 1,
+    "recall_at_1": 1.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 1.0,
+    "gold_source_coverage_at_3": 1.0,
+    "gold_source_coverage_at_5": 1.0,
+    "all_gold_sources_at_5": 1.0,
+    "retrieval_latency_sec": 0.9524,
+    "matched_symbols": [
+      "Candidate"
+    ],
+    "code_base_sources": [
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java:50-81",
+      "preprocessing/4_generate_candidate_paths.py:1-79",
+      "preprocessing/README.md:1-38",
+      "preprocessing/4_generate_candidate_paths.py:715-752",
+      "README.md:1-29",
+      "simulation/README.md:92-115",
+      "preprocessing/README.md:35-87",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java:1-53",
+      "README.md:26-72",
+      "simulation/README.md:1-38"
+    ],
+    "code_symbol_sources": [
+      "preprocessing/4_generate_candidate_paths.py:76-133"
+    ],
+    "code_symbol_hit_count": 1
+  },
+  {
+    "id": "q017",
+    "category": "configuration",
+    "difficulty": "hard",
+    "answerable": true,
+    "question": "What are the default behavioral parameter grid values in SweepConfig?",
+    "gold_sources": [
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java"
+    ],
+    "retrieved_sources": [
+      "simulation/README.md",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java",
+      "simulation/src/main/java/porto/sweep/sim/SweepParameters.java",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java",
+      "simulation/src/main/java/porto/sweep/sim/SweepRunResult.java",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java"
+    ],
+    "gold_source_rank": 4,
+    "recall_at_1": 0.0,
+    "recall_at_3": 0.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 0.25,
+    "gold_source_coverage_at_3": 0.0,
+    "gold_source_coverage_at_5": 1.0,
+    "all_gold_sources_at_5": 1.0,
+    "retrieval_latency_sec": 0.9179,
+    "matched_symbols": [
+      "parameter",
+      "SweepConfig"
+    ],
+    "code_base_sources": [
+      "simulation/README.md:132-158",
+      "simulation/README.md:194-201",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java:261-287",
+      "simulation/src/main/java/porto/sweep/sim/SweepParameters.java:1-27",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java:432-449",
+      "simulation/README.md:112-135",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java:463-496",
+      "simulation/src/main/java/porto/sweep/sim/SweepRunResult.java:1-34",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java:604-639",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java:50-81"
+    ],
+    "code_symbol_sources": [
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java:1-53",
+      "simulation/src/main/java/porto/sweep/config/TaxiClassProfile.java:112-146"
+    ],
+    "code_symbol_hit_count": 2
+  },
+  {
+    "id": "q018",
+    "category": "configuration",
+    "difficulty": "medium",
+    "answerable": true,
+    "question": "What are the default traffic-physics grid values?",
+    "gold_sources": [
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java"
+    ],
+    "retrieved_sources": [
+      "simulation/README.md",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java",
+      "simulation/src/main/java/porto/sweep/sim/SweepParameters.java",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java",
+      "README.md"
+    ],
+    "gold_source_rank": 2,
+    "recall_at_1": 0.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 0.5,
+    "gold_source_coverage_at_3": 1.0,
+    "gold_source_coverage_at_5": 1.0,
+    "all_gold_sources_at_5": 1.0,
+    "retrieval_latency_sec": 0.9624,
+    "matched_symbols": [],
+    "code_base_sources": [
+      "simulation/README.md:132-158",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java:50-81",
+      "simulation/src/main/java/porto/sweep/sim/SweepParameters.java:1-27",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java:1899-1932",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java:261-287",
+      "README.md:120-129"
+    ],
+    "code_symbol_sources": [],
+    "code_symbol_hit_count": 0
+  },
+  {
+    "id": "q019",
+    "category": "configuration",
+    "difficulty": "hard",
+    "answerable": true,
+    "question": "What are the four default objective weights?",
+    "gold_sources": [
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java"
+    ],
+    "retrieved_sources": [
+      "simulation/README.md",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java",
+      "README.md",
+      "simulation/src/main/java/porto/sweep/sim/ObjectiveMetricsAccumulator.java",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java",
+      "preprocessing/README.md"
+    ],
+    "gold_source_rank": 2,
+    "recall_at_1": 0.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 0.5,
+    "gold_source_coverage_at_3": 1.0,
+    "gold_source_coverage_at_5": 1.0,
+    "all_gold_sources_at_5": 1.0,
+    "retrieval_latency_sec": 0.9528,
+    "matched_symbols": [],
+    "code_base_sources": [
+      "simulation/README.md:155-174",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java:78-105",
+      "README.md:1-29",
+      "simulation/src/main/java/porto/sweep/sim/ObjectiveMetricsAccumulator.java:97-140",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java:77-110",
+      "preprocessing/README.md:136-215"
+    ],
+    "code_symbol_sources": [],
+    "code_symbol_hit_count": 0
+  },
+  {
+    "id": "q020",
+    "category": "configuration",
+    "difficulty": "hard",
+    "answerable": true,
+    "question": "What are the default route-matching shortlist, scoring, and acceptance settings?",
+    "gold_sources": [
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java"
+    ],
+    "retrieved_sources": [
+      "simulation/README.md",
+      "simulation/src/main/java/porto/sweep/eval/JaccardEvaluator.java",
+      "preprocessing/3_build_od_route_shares.py",
+      "README.md",
+      "preprocessing/README.md",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java"
+    ],
+    "gold_source_rank": null,
+    "recall_at_1": 0.0,
+    "recall_at_3": 0.0,
+    "recall_at_5": 0.0,
+    "reciprocal_rank": 0.0,
+    "gold_source_coverage_at_3": 0.0,
+    "gold_source_coverage_at_5": 0.0,
+    "all_gold_sources_at_5": 0.0,
+    "retrieval_latency_sec": 1.0624,
+    "matched_symbols": [],
+    "code_base_sources": [
+      "simulation/README.md:155-174",
+      "simulation/src/main/java/porto/sweep/eval/JaccardEvaluator.java:32-67",
+      "preprocessing/3_build_od_route_shares.py:48-96",
+      "README.md:69-123",
+      "preprocessing/README.md:914-963",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java:309-341"
+    ],
+    "code_symbol_sources": [],
+    "code_symbol_hit_count": 0
+  },
+  {
+    "id": "q021",
+    "category": "results",
+    "difficulty": "medium",
+    "answerable": true,
+    "question": "What was the headline result of the final 20-seed replication?",
+    "gold_sources": [
+      "README.md"
+    ],
+    "retrieved_sources": [
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java",
+      "README.md",
+      "preprocessing/2_infer_background_from_edge_times.py",
+      "simulation/README.md",
+      "preprocessing/README.md",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java"
+    ],
+    "gold_source_rank": 2,
+    "recall_at_1": 0.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 0.5,
+    "gold_source_coverage_at_3": 1.0,
+    "gold_source_coverage_at_5": 1.0,
+    "all_gold_sources_at_5": 1.0,
+    "retrieval_latency_sec": 0.9253,
+    "matched_symbols": [],
+    "code_base_sources": [
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java:129-160",
+      "README.md:1-29",
+      "preprocessing/2_infer_background_from_edge_times.py:680-734",
+      "simulation/README.md:155-174",
+      "preprocessing/README.md:701-769",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java:328-372"
+    ],
+    "code_symbol_sources": [],
+    "code_symbol_hit_count": 0
+  },
+  {
+    "id": "q022",
+    "category": "metrics",
+    "difficulty": "easy",
+    "answerable": true,
+    "question": "Which four error components make up the default objective loss?",
+    "gold_sources": [
+      "README.md",
+      "simulation/README.md"
+    ],
+    "retrieved_sources": [
+      "simulation/README.md",
+      "simulation/src/main/java/porto/sweep/sim/ObjectiveMetricsAccumulator.java",
+      "README.md",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java",
+      "preprocessing/README.md"
+    ],
+    "gold_source_rank": 1,
+    "recall_at_1": 1.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 1.0,
+    "gold_source_coverage_at_3": 1.0,
+    "gold_source_coverage_at_5": 1.0,
+    "all_gold_sources_at_5": 1.0,
+    "retrieval_latency_sec": 0.9541,
+    "matched_symbols": [],
+    "code_base_sources": [
+      "simulation/README.md:155-174",
+      "simulation/src/main/java/porto/sweep/sim/ObjectiveMetricsAccumulator.java:97-140",
+      "README.md:26-72",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java:236-265",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java:77-110",
+      "preprocessing/README.md:212-275"
+    ],
+    "code_symbol_sources": [],
+    "code_symbol_hit_count": 0
+  },
+  {
+    "id": "q023",
+    "category": "metrics",
+    "difficulty": "medium",
+    "answerable": true,
+    "question": "How is objective loss calculated from the component errors?",
+    "gold_sources": [
+      "simulation/README.md"
+    ],
+    "retrieved_sources": [
+      "simulation/README.md",
+      "simulation/src/main/java/porto/sweep/sim/ObjectiveMetricsAccumulator.java",
+      "README.md",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java"
+    ],
+    "gold_source_rank": 1,
+    "recall_at_1": 1.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 1.0,
+    "gold_source_coverage_at_3": 1.0,
+    "gold_source_coverage_at_5": 1.0,
+    "all_gold_sources_at_5": 1.0,
+    "retrieval_latency_sec": 0.9735,
+    "matched_symbols": [],
+    "code_base_sources": [
+      "simulation/README.md:155-174",
+      "simulation/src/main/java/porto/sweep/sim/ObjectiveMetricsAccumulator.java:97-140",
+      "README.md:26-72",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java:77-110",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java:236-265"
+    ],
+    "code_symbol_sources": [],
+    "code_symbol_hit_count": 0
+  },
+  {
+    "id": "q024",
+    "category": "metrics",
+    "difficulty": "medium",
+    "answerable": true,
+    "question": "What makes a run eligible for objective-based ranking, and what is the default minimum completion rate?",
+    "gold_sources": [
+      "simulation/README.md",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java"
+    ],
+    "retrieved_sources": [
+      "simulation/README.md",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java",
+      "simulation/src/main/java/porto/sweep/sim/ObjectiveMetricsAccumulator.java",
+      "README.md",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java"
+    ],
+    "gold_source_rank": 1,
+    "recall_at_1": 1.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 1.0,
+    "gold_source_coverage_at_3": 0.5,
+    "gold_source_coverage_at_5": 0.5,
+    "all_gold_sources_at_5": 0.0,
+    "retrieval_latency_sec": 0.9964,
+    "matched_symbols": [],
+    "code_base_sources": [
+      "simulation/README.md:155-174",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java:27-64",
+      "simulation/src/main/java/porto/sweep/sim/ObjectiveMetricsAccumulator.java:97-140",
+      "README.md:26-72",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java:636-673",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java:269-299"
+    ],
+    "code_symbol_sources": [],
+    "code_symbol_hit_count": 0
+  },
+  {
+    "id": "q025",
+    "category": "metrics",
+    "difficulty": "medium",
+    "answerable": true,
+    "question": "How are runs ranked when objectiveEnabled is false?",
+    "gold_sources": [
+      "simulation/README.md"
+    ],
+    "retrieved_sources": [
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java",
+      "simulation/README.md",
+      "simulation/src/main/java/porto/sweep/sim/ObjectiveMetricsAccumulator.java",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java",
+      "simulation/src/main/java/porto/sweep/sim/SweepRunResult.java",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java"
+    ],
+    "gold_source_rank": 2,
+    "recall_at_1": 0.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 0.5,
+    "gold_source_coverage_at_3": 1.0,
+    "gold_source_coverage_at_5": 1.0,
+    "all_gold_sources_at_5": 1.0,
+    "retrieval_latency_sec": 0.9889,
+    "matched_symbols": [
+      "objectiveEnabled"
+    ],
+    "code_base_sources": [
+      "simulation/README.md:155-174",
+      "simulation/src/main/java/porto/sweep/sim/ObjectiveMetricsAccumulator.java:97-140",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java:27-64",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java:269-299",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java:78-105",
+      "simulation/src/main/java/porto/sweep/sim/ObjectiveMetricsAccumulator.java:77-100",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java:236-265",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java:182-209",
+      "simulation/README.md:171-197",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java:636-673"
+    ],
+    "code_symbol_sources": [
+      "simulation/src/main/java/porto/sweep/sim/SweepRunResult.java:1-34",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java:78-105"
+    ],
+    "code_symbol_hit_count": 2
+  },
+  {
+    "id": "q026",
+    "category": "metrics",
+    "difficulty": "hard",
+    "answerable": true,
+    "question": "How does realized-route classification compare a simulated route with observed routes?",
+    "gold_sources": [
+      "simulation/README.md"
+    ],
+    "retrieved_sources": [
+      "simulation/README.md",
+      "README.md",
+      "simulation/src/main/java/porto/sweep/eval/JaccardEvaluator.java",
+      "preprocessing/3_build_od_route_shares.py",
+      "preprocessing/README.md",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java"
+    ],
+    "gold_source_rank": 1,
+    "recall_at_1": 1.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 1.0,
+    "gold_source_coverage_at_3": 1.0,
+    "gold_source_coverage_at_5": 1.0,
+    "all_gold_sources_at_5": 1.0,
+    "retrieval_latency_sec": 1.0399,
+    "matched_symbols": [],
+    "code_base_sources": [
+      "simulation/README.md:1-38",
+      "README.md:26-72",
+      "simulation/src/main/java/porto/sweep/eval/JaccardEvaluator.java:32-67",
+      "preprocessing/3_build_od_route_shares.py:1-51",
+      "preprocessing/README.md:1-38",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java:78-105"
+    ],
+    "code_symbol_sources": [],
+    "code_symbol_hit_count": 0
+  },
+  {
+    "id": "q027",
+    "category": "metrics",
+    "difficulty": "medium",
+    "answerable": true,
+    "question": "What does objectiveObservedNoveltyRate=-1 mean?",
+    "gold_sources": [
+      "simulation/README.md",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java"
+    ],
+    "retrieved_sources": [
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java",
+      "simulation/README.md",
+      "simulation/src/main/java/porto/sweep/sim/ObjectiveMetricsAccumulator.java"
+    ],
+    "gold_source_rank": 1,
+    "recall_at_1": 1.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 1.0,
+    "gold_source_coverage_at_3": 1.0,
+    "gold_source_coverage_at_5": 1.0,
+    "all_gold_sources_at_5": 1.0,
+    "retrieval_latency_sec": 1.1468,
+    "matched_symbols": [
+      "objectiveObservedNoveltyRate"
+    ],
+    "code_base_sources": [
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java:236-265",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java:213-228",
+      "simulation/README.md:155-174",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java:269-299",
+      "simulation/src/main/java/porto/sweep/sim/ObjectiveMetricsAccumulator.java:395-419",
+      "simulation/src/main/java/porto/sweep/sim/ObjectiveMetricsAccumulator.java:173-214",
+      "simulation/src/main/java/porto/sweep/sim/ObjectiveMetricsAccumulator.java:416-445",
+      "simulation/src/main/java/porto/sweep/sim/ObjectiveMetricsAccumulator.java:97-140",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java:262-272",
+      "simulation/src/main/java/porto/sweep/sim/ObjectiveMetricsAccumulator.java:211-247"
+    ],
+    "code_symbol_sources": [
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java:78-105"
+    ],
+    "code_symbol_hit_count": 1
+  },
+  {
+    "id": "q028",
+    "category": "results",
+    "difficulty": "medium",
+    "answerable": true,
+    "question": "Why should the final replication result not be interpreted as proof that disabling rerouting is universally optimal?",
+    "gold_sources": [
+      "README.md"
+    ],
+    "retrieved_sources": [
+      "README.md",
+      "simulation/README.md",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java",
+      "preprocessing/README.md",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java"
+    ],
+    "gold_source_rank": 1,
+    "recall_at_1": 1.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 1.0,
+    "gold_source_coverage_at_3": 1.0,
+    "gold_source_coverage_at_5": 1.0,
+    "all_gold_sources_at_5": 1.0,
+    "retrieval_latency_sec": 1.0131,
+    "matched_symbols": [],
+    "code_base_sources": [
+      "README.md:1-29",
+      "simulation/README.md:132-158",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java:309-341",
+      "preprocessing/README.md:84-139",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java:1134-1171",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java:50-81"
+    ],
+    "code_symbol_sources": [],
+    "code_symbol_hit_count": 0
+  },
+  {
+    "id": "q029",
+    "category": "results",
+    "difficulty": "easy",
+    "answerable": true,
+    "question": "Which four routing strategies does the project compare?",
+    "gold_sources": [
+      "README.md",
+      "simulation/README.md"
+    ],
+    "retrieved_sources": [
+      "README.md",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java",
+      "simulation/README.md",
+      "preprocessing/README.md",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java"
+    ],
+    "gold_source_rank": 1,
+    "recall_at_1": 1.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 1.0,
+    "gold_source_coverage_at_3": 1.0,
+    "gold_source_coverage_at_5": 1.0,
+    "all_gold_sources_at_5": 1.0,
+    "retrieval_latency_sec": 1.1072,
+    "matched_symbols": [],
+    "code_base_sources": [
+      "README.md:1-29",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java:873-903",
+      "simulation/README.md:132-158",
+      "preprocessing/README.md:35-87",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java:27-64"
+    ],
+    "code_symbol_sources": [],
+    "code_symbol_hit_count": 0
+  },
+  {
+    "id": "q030",
+    "category": "results",
+    "difficulty": "medium",
+    "answerable": true,
+    "question": "What additional output files are produced in replication mode?",
+    "gold_sources": [
+      "simulation/README.md"
+    ],
+    "retrieved_sources": [
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java",
+      "simulation/README.md",
+      "preprocessing/1_porto_map_match.py",
+      "preprocessing/README.md",
+      "README.md",
+      "preprocessing/2_infer_background_from_edge_times.py"
+    ],
+    "gold_source_rank": 2,
+    "recall_at_1": 0.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 0.5,
+    "gold_source_coverage_at_3": 1.0,
+    "gold_source_coverage_at_5": 1.0,
+    "all_gold_sources_at_5": 1.0,
+    "retrieval_latency_sec": 1.0483,
+    "matched_symbols": [],
+    "code_base_sources": [
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java:182-209",
+      "simulation/README.md:171-197",
+      "preprocessing/1_porto_map_match.py:931-982",
+      "preprocessing/README.md:701-769",
+      "README.md:69-123",
+      "preprocessing/2_infer_background_from_edge_times.py:680-734"
+    ],
+    "code_symbol_sources": [],
+    "code_symbol_hit_count": 0
+  },
+  {
+    "id": "q031",
+    "category": "implementation",
+    "difficulty": "medium",
+    "answerable": true,
+    "question": "How does the simulator calculate route cost for the shortest benchmark, including its fallback?",
+    "gold_sources": [
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java"
+    ],
+    "retrieved_sources": [
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java",
+      "README.md",
+      "preprocessing/README.md",
+      "simulation/README.md",
+      "preprocessing/4_generate_candidate_paths.py"
+    ],
+    "gold_source_rank": 1,
+    "recall_at_1": 1.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 1.0,
+    "gold_source_coverage_at_3": 1.0,
+    "gold_source_coverage_at_5": 1.0,
+    "all_gold_sources_at_5": 1.0,
+    "retrieval_latency_sec": 1.0931,
+    "matched_symbols": [
+      "shortest"
+    ],
+    "code_base_sources": [
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java:900-935",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java:230-264",
+      "README.md:1-29",
+      "preprocessing/README.md:766-836",
+      "README.md:120-129",
+      "README.md:26-72",
+      "simulation/README.md:1-38",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java:1134-1171",
+      "preprocessing/4_generate_candidate_paths.py:359-380",
+      "preprocessing/README.md:1-38"
+    ],
+    "code_symbol_sources": [
+      "preprocessing/4_generate_candidate_paths.py:239-285"
+    ],
+    "code_symbol_hit_count": 1
+  },
+  {
+    "id": "q032",
+    "category": "implementation",
+    "difficulty": "medium",
+    "answerable": true,
+    "question": "How does static_fastest calculate route cost, including its fallback?",
+    "gold_sources": [
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java"
+    ],
+    "retrieved_sources": [
+      "README.md",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java",
+      "simulation/README.md",
+      "preprocessing/2_infer_background_from_edge_times.py",
+      "simulation/src/main/java/porto/sweep/sim/SweepParameters.java"
+    ],
+    "gold_source_rank": 2,
+    "recall_at_1": 0.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 0.5,
+    "gold_source_coverage_at_3": 1.0,
+    "gold_source_coverage_at_5": 1.0,
+    "all_gold_sources_at_5": 1.0,
+    "retrieval_latency_sec": 1.0271,
+    "matched_symbols": [],
+    "code_base_sources": [
+      "README.md:1-29",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java:1134-1171",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java:867-892",
+      "simulation/README.md:112-135",
+      "preprocessing/2_infer_background_from_edge_times.py:285-341",
+      "simulation/src/main/java/porto/sweep/sim/SweepParameters.java:1-27"
+    ],
+    "code_symbol_sources": [],
+    "code_symbol_hit_count": 0
+  },
+  {
+    "id": "q033",
+    "category": "implementation",
+    "difficulty": "medium",
+    "answerable": true,
+    "question": "How does dynamic_fastest calculate route cost at route choice time?",
+    "gold_sources": [
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java"
+    ],
+    "retrieved_sources": [
+      "README.md",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java",
+      "simulation/README.md",
+      "simulation/src/main/java/porto/sweep/sim/SweepParameters.java",
+      "preprocessing/2_infer_background_from_edge_times.py"
+    ],
+    "gold_source_rank": 2,
+    "recall_at_1": 0.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 0.5,
+    "gold_source_coverage_at_3": 1.0,
+    "gold_source_coverage_at_5": 1.0,
+    "all_gold_sources_at_5": 1.0,
+    "retrieval_latency_sec": 1.1423,
+    "matched_symbols": [],
+    "code_base_sources": [
+      "README.md:1-29",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java:1134-1171",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java:867-892",
+      "simulation/README.md:112-135",
+      "simulation/src/main/java/porto/sweep/sim/SweepParameters.java:1-27",
+      "preprocessing/2_infer_background_from_edge_times.py:285-341"
+    ],
+    "code_symbol_sources": [],
+    "code_symbol_hit_count": 0
+  },
+  {
+    "id": "q034",
+    "category": "implementation",
+    "difficulty": "hard",
+    "answerable": true,
+    "question": "When a dynamic_fastest taxi reroutes, how is the new suffix selected?",
+    "gold_sources": [
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java"
+    ],
+    "retrieved_sources": [
+      "README.md",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java",
+      "simulation/README.md",
+      "simulation/src/main/java/porto/sweep/sim/SweepParameters.java",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java"
+    ],
+    "gold_source_rank": 2,
+    "recall_at_1": 0.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 0.5,
+    "gold_source_coverage_at_3": 1.0,
+    "gold_source_coverage_at_5": 1.0,
+    "all_gold_sources_at_5": 1.0,
+    "retrieval_latency_sec": 0.9591,
+    "matched_symbols": [],
+    "code_base_sources": [
+      "README.md:1-29",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java:1134-1171",
+      "simulation/README.md:112-135",
+      "simulation/src/main/java/porto/sweep/sim/SweepParameters.java:1-27",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java:889-921",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java:50-81"
+    ],
+    "code_symbol_sources": [],
+    "code_symbol_hit_count": 0
+  },
+  {
+    "id": "q035",
+    "category": "implementation",
+    "difficulty": "hard",
+    "answerable": true,
+    "question": "How is the behavioral reroute score computed for an alternative suffix?",
+    "gold_sources": [
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java"
+    ],
+    "retrieved_sources": [
+      "README.md",
+      "simulation/README.md",
+      "preprocessing/run_all_pipeline.py",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java",
+      "simulation/src/main/java/porto/sweep/eval/JaccardEvaluator.java",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java"
+    ],
+    "gold_source_rank": 4,
+    "recall_at_1": 0.0,
+    "recall_at_3": 0.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 0.25,
+    "gold_source_coverage_at_3": 0.0,
+    "gold_source_coverage_at_5": 1.0,
+    "all_gold_sources_at_5": 1.0,
+    "retrieval_latency_sec": 1.0694,
+    "matched_symbols": [],
+    "code_base_sources": [
+      "README.md:1-29",
+      "simulation/README.md:92-115",
+      "preprocessing/run_all_pipeline.py:182-230",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java:1693-1745",
+      "simulation/src/main/java/porto/sweep/eval/JaccardEvaluator.java:32-67",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java:50-81"
+    ],
+    "code_symbol_sources": [],
+    "code_symbol_hit_count": 0
+  },
+  {
+    "id": "q036",
+    "category": "implementation",
+    "difficulty": "medium",
+    "answerable": true,
+    "question": "Where are edge-habit counts stored for taxi and collective modes?",
+    "gold_sources": [
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java"
+    ],
+    "retrieved_sources": [
+      "simulation/README.md",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java",
+      "preprocessing/2_infer_background_from_edge_times.py",
+      "preprocessing/3_build_od_route_shares.py"
+    ],
+    "gold_source_rank": 2,
+    "recall_at_1": 0.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 0.5,
+    "gold_source_coverage_at_3": 1.0,
+    "gold_source_coverage_at_5": 1.0,
+    "all_gold_sources_at_5": 1.0,
+    "retrieval_latency_sec": 0.9956,
+    "matched_symbols": [],
+    "code_base_sources": [
+      "simulation/README.md:112-135",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java:539-567",
+      "preprocessing/2_infer_background_from_edge_times.py:731-759",
+      "preprocessing/3_build_od_route_shares.py:295-343"
+    ],
+    "code_symbol_sources": [],
+    "code_symbol_hit_count": 0
+  },
+  {
+    "id": "q037",
+    "category": "implementation",
+    "difficulty": "hard",
+    "answerable": true,
+    "question": "How is the edge-habit score for a route computed?",
+    "gold_sources": [
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java"
+    ],
+    "retrieved_sources": [
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java",
+      "preprocessing/3_build_od_route_shares.py",
+      "simulation/README.md",
+      "simulation/src/main/java/porto/sweep/eval/JaccardEvaluator.java",
+      "preprocessing/README.md",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java"
+    ],
+    "gold_source_rank": 1,
+    "recall_at_1": 1.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 1.0,
+    "gold_source_coverage_at_3": 1.0,
+    "gold_source_coverage_at_5": 1.0,
+    "all_gold_sources_at_5": 1.0,
+    "retrieval_latency_sec": 0.9678,
+    "matched_symbols": [],
+    "code_base_sources": [
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java:932-981",
+      "preprocessing/3_build_od_route_shares.py:1-51",
+      "simulation/README.md:92-115",
+      "simulation/src/main/java/porto/sweep/eval/JaccardEvaluator.java:32-67",
+      "preprocessing/README.md:381-448",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java:50-81"
+    ],
+    "code_symbol_sources": [],
+    "code_symbol_hit_count": 0
+  },
+  {
+    "id": "q038",
+    "category": "implementation",
+    "difficulty": "hard",
+    "answerable": true,
+    "question": "How is the distance-detour feature calculated?",
+    "gold_sources": [
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java"
+    ],
+    "retrieved_sources": [
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java",
+      "preprocessing/4_generate_candidate_paths.py",
+      "simulation/README.md",
+      "README.md",
+      "preprocessing/1_porto_map_match.py",
+      "preprocessing/2_infer_background_from_edge_times.py"
+    ],
+    "gold_source_rank": 1,
+    "recall_at_1": 1.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 1.0,
+    "gold_source_coverage_at_3": 1.0,
+    "gold_source_coverage_at_5": 1.0,
+    "all_gold_sources_at_5": 1.0,
+    "retrieval_latency_sec": 0.9618,
+    "matched_symbols": [],
+    "code_base_sources": [
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java:830-844",
+      "preprocessing/4_generate_candidate_paths.py:162-181",
+      "simulation/README.md:1-38",
+      "README.md:120-129",
+      "preprocessing/1_porto_map_match.py:767-820",
+      "preprocessing/2_infer_background_from_edge_times.py:285-341"
+    ],
+    "code_symbol_sources": [],
+    "code_symbol_hit_count": 0
+  },
+  {
+    "id": "q039",
+    "category": "implementation",
+    "difficulty": "hard",
+    "answerable": true,
+    "question": "How is route complexity calculated?",
+    "gold_sources": [
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java"
+    ],
+    "retrieved_sources": [
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java",
+      "preprocessing/3_build_od_route_shares.py",
+      "README.md",
+      "simulation/README.md",
+      "preprocessing/2_infer_background_from_edge_times.py",
+      "simulation/src/main/java/porto/sweep/sim/SweepParameters.java"
+    ],
+    "gold_source_rank": 1,
+    "recall_at_1": 1.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 1.0,
+    "gold_source_coverage_at_3": 1.0,
+    "gold_source_coverage_at_5": 1.0,
+    "all_gold_sources_at_5": 1.0,
+    "retrieval_latency_sec": 1.0408,
+    "matched_symbols": [],
+    "code_base_sources": [
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java:932-981",
+      "preprocessing/3_build_od_route_shares.py:373-415",
+      "README.md:1-29",
+      "simulation/README.md:1-38",
+      "preprocessing/2_infer_background_from_edge_times.py:285-341",
+      "simulation/src/main/java/porto/sweep/sim/SweepParameters.java:45-73"
+    ],
+    "code_symbol_sources": [],
+    "code_symbol_hit_count": 0
+  },
+  {
+    "id": "q040",
+    "category": "implementation",
+    "difficulty": "medium",
+    "answerable": true,
+    "question": "How are request times generated in immediate mode versus hourly mode?",
+    "gold_sources": [
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java"
+    ],
+    "retrieved_sources": [
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java",
+      "simulation/README.md",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java",
+      "preprocessing/1_porto_map_match.py",
+      "simulation/src/main/java/porto/sweep/io/DataRepository.java",
+      "preprocessing/2_infer_background_from_edge_times.py"
+    ],
+    "gold_source_rank": 1,
+    "recall_at_1": 1.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 1.0,
+    "gold_source_coverage_at_3": 1.0,
+    "gold_source_coverage_at_5": 1.0,
+    "all_gold_sources_at_5": 1.0,
+    "retrieval_latency_sec": 1.0261,
+    "matched_symbols": [],
+    "code_base_sources": [
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java:705-742",
+      "simulation/README.md:112-135",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java:1-53",
+      "preprocessing/1_porto_map_match.py:708-770",
+      "simulation/src/main/java/porto/sweep/io/DataRepository.java:246-284",
+      "preprocessing/2_infer_background_from_edge_times.py:1-52"
+    ],
+    "code_symbol_sources": [],
+    "code_symbol_hit_count": 0
+  },
+  {
+    "id": "q041",
+    "category": "unanswerable",
+    "difficulty": "easy",
+    "answerable": false,
+    "question": "What was the weather in Porto on the date the best-performing experiment was run?",
+    "gold_sources": [],
+    "retrieved_sources": [
+      "README.md",
+      "simulation/README.md",
+      "preprocessing/README.md",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java",
+      "preprocessing/run_all_pipeline.py",
+      "simulation/src/main/java/porto/sweep/sim/SweepParameters.java"
+    ],
+    "gold_source_rank": null,
+    "recall_at_1": null,
+    "recall_at_3": null,
+    "recall_at_5": null,
+    "reciprocal_rank": null,
+    "gold_source_coverage_at_3": null,
+    "gold_source_coverage_at_5": null,
+    "all_gold_sources_at_5": null,
+    "retrieval_latency_sec": 0.975,
+    "matched_symbols": [],
+    "code_base_sources": [
+      "README.md:26-72",
+      "simulation/README.md:1-38",
+      "preprocessing/README.md:84-139",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java:432-449",
+      "preprocessing/run_all_pipeline.py:1-53",
+      "simulation/src/main/java/porto/sweep/sim/SweepParameters.java:1-27"
+    ],
+    "code_symbol_sources": [],
+    "code_symbol_hit_count": 0
+  },
+  {
+    "id": "q042",
+    "category": "unanswerable",
+    "difficulty": "easy",
+    "answerable": false,
+    "question": "What was the average age of the taxi drivers in the Porto dataset?",
+    "gold_sources": [],
+    "retrieved_sources": [
+      "preprocessing/README.md",
+      "README.md",
+      "simulation/README.md",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java",
+      "simulation/src/main/java/porto/sweep/sim/SweepParameters.java",
+      "simulation/src/main/java/porto/sweep/config/TaxiClassProfile.java"
+    ],
+    "gold_source_rank": null,
+    "recall_at_1": null,
+    "recall_at_3": null,
+    "recall_at_5": null,
+    "reciprocal_rank": null,
+    "gold_source_coverage_at_3": null,
+    "gold_source_coverage_at_5": null,
+    "all_gold_sources_at_5": null,
+    "retrieval_latency_sec": 1.1626,
+    "matched_symbols": [],
+    "code_base_sources": [
+      "preprocessing/README.md:1-38",
+      "README.md:120-129",
+      "simulation/README.md:1-38",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java:539-567",
+      "simulation/src/main/java/porto/sweep/sim/SweepParameters.java:1-27",
+      "simulation/src/main/java/porto/sweep/config/TaxiClassProfile.java:1-30"
+    ],
+    "code_symbol_sources": [],
+    "code_symbol_hit_count": 0
+  },
+  {
+    "id": "q043",
+    "category": "unanswerable",
+    "difficulty": "easy",
+    "answerable": false,
+    "question": "Which make and model of GPS device recorded the taxi trajectories?",
+    "gold_sources": [],
+    "retrieved_sources": [
+      "README.md",
+      "preprocessing/README.md",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java",
+      "preprocessing/1_porto_map_match.py",
+      "simulation/README.md"
+    ],
+    "gold_source_rank": null,
+    "recall_at_1": null,
+    "recall_at_3": null,
+    "recall_at_5": null,
+    "reciprocal_rank": null,
+    "gold_source_coverage_at_3": null,
+    "gold_source_coverage_at_5": null,
+    "all_gold_sources_at_5": null,
+    "retrieval_latency_sec": 1.4328,
+    "matched_symbols": [],
+    "code_base_sources": [
+      "README.md:120-129",
+      "preprocessing/README.md:1-38",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java:539-567",
+      "preprocessing/1_porto_map_match.py:767-820",
+      "simulation/README.md:155-174"
+    ],
+    "code_symbol_sources": [],
+    "code_symbol_hit_count": 0
+  },
+  {
+    "id": "q044",
+    "category": "unanswerable",
+    "difficulty": "easy",
+    "answerable": false,
+    "question": "How much fuel did the simulated taxis consume in the final experiment?",
+    "gold_sources": [],
+    "retrieved_sources": [
+      "simulation/README.md",
+      "README.md",
+      "preprocessing/README.md",
+      "simulation/src/main/java/porto/sweep/sim/SweepParameters.java",
+      "simulation/src/main/java/porto/sweep/eval/JaccardEvaluator.java",
+      "preprocessing/2_infer_background_from_edge_times.py"
+    ],
+    "gold_source_rank": null,
+    "recall_at_1": null,
+    "recall_at_3": null,
+    "recall_at_5": null,
+    "reciprocal_rank": null,
+    "gold_source_coverage_at_3": null,
+    "gold_source_coverage_at_5": null,
+    "all_gold_sources_at_5": null,
+    "retrieval_latency_sec": 1.0829,
+    "matched_symbols": [],
+    "code_base_sources": [
+      "simulation/README.md:1-38",
+      "README.md:1-29",
+      "preprocessing/README.md:701-769",
+      "simulation/src/main/java/porto/sweep/sim/SweepParameters.java:1-27",
+      "simulation/src/main/java/porto/sweep/eval/JaccardEvaluator.java:32-67",
+      "preprocessing/2_infer_background_from_edge_times.py:1-52"
+    ],
+    "code_symbol_sources": [],
+    "code_symbol_hit_count": 0
+  },
+  {
+    "id": "q045",
+    "category": "unanswerable",
+    "difficulty": "easy",
+    "answerable": false,
+    "question": "What were the total CO2 emissions of the final 20-seed replication?",
+    "gold_sources": [],
+    "retrieved_sources": [
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java",
+      "simulation/examples/quickstart.properties",
+      "simulation/README.md",
+      "preprocessing/README.md",
+      "README.md",
+      "preprocessing/2_infer_background_from_edge_times.py"
+    ],
+    "gold_source_rank": null,
+    "recall_at_1": null,
+    "recall_at_3": null,
+    "recall_at_5": null,
+    "reciprocal_rank": null,
+    "gold_source_coverage_at_3": null,
+    "gold_source_coverage_at_5": null,
+    "all_gold_sources_at_5": null,
+    "retrieval_latency_sec": 1.2027,
+    "matched_symbols": [],
+    "code_base_sources": [
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java:129-160",
+      "simulation/examples/quickstart.properties:1-47",
+      "simulation/README.md:132-158",
+      "preprocessing/README.md:701-769",
+      "README.md:1-29",
+      "preprocessing/2_infer_background_from_edge_times.py:680-734"
+    ],
+    "code_symbol_sources": [],
+    "code_symbol_hit_count": 0
+  },
+  {
+    "id": "q046",
+    "category": "unanswerable",
+    "difficulty": "easy",
+    "answerable": false,
+    "question": "What was the total taxi-fare revenue represented by the observed trips?",
+    "gold_sources": [],
+    "retrieved_sources": [
+      "simulation/README.md",
+      "README.md",
+      "preprocessing/README.md",
+      "simulation/src/main/java/porto/sweep/sim/ObjectiveMetricsAccumulator.java",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java",
+      "preprocessing/2_infer_background_from_edge_times.py"
+    ],
+    "gold_source_rank": null,
+    "recall_at_1": null,
+    "recall_at_3": null,
+    "recall_at_5": null,
+    "reciprocal_rank": null,
+    "gold_source_coverage_at_3": null,
+    "gold_source_coverage_at_5": null,
+    "all_gold_sources_at_5": null,
+    "retrieval_latency_sec": 1.036,
+    "matched_symbols": [],
+    "code_base_sources": [
+      "simulation/README.md:1-38",
+      "README.md:26-72",
+      "preprocessing/README.md:1-38",
+      "simulation/src/main/java/porto/sweep/sim/ObjectiveMetricsAccumulator.java:211-247",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java:1816-1857",
+      "preprocessing/2_infer_background_from_edge_times.py:899-951"
+    ],
+    "code_symbol_sources": [],
+    "code_symbol_hit_count": 0
+  },
+  {
+    "id": "q047",
+    "category": "unanswerable",
+    "difficulty": "medium",
+    "answerable": false,
+    "question": "What traffic-signal phase plan was used for each intersection in the simulation?",
+    "gold_sources": [],
+    "retrieved_sources": [
+      "README.md",
+      "simulation/README.md",
+      "preprocessing/2_infer_background_from_edge_times.py",
+      "simulation/src/main/java/porto/sweep/io/DataRepository.java",
+      "preprocessing/README.md",
+      "preprocessing/run_all_pipeline.py"
+    ],
+    "gold_source_rank": null,
+    "recall_at_1": null,
+    "recall_at_3": null,
+    "recall_at_5": null,
+    "reciprocal_rank": null,
+    "gold_source_coverage_at_3": null,
+    "gold_source_coverage_at_5": null,
+    "all_gold_sources_at_5": null,
+    "retrieval_latency_sec": 1.0108,
+    "matched_symbols": [],
+    "code_base_sources": [
+      "README.md:1-29",
+      "simulation/README.md:1-38",
+      "preprocessing/2_infer_background_from_edge_times.py:1-52",
+      "simulation/src/main/java/porto/sweep/io/DataRepository.java:50-78",
+      "preprocessing/README.md:1-38",
+      "preprocessing/run_all_pipeline.py:262-289"
+    ],
+    "code_symbol_sources": [],
+    "code_symbol_hit_count": 0
+  },
+  {
+    "id": "q048",
+    "category": "unanswerable",
+    "difficulty": "medium",
+    "answerable": false,
+    "question": "How many crashes occurred on the candidate routes during the observation period?",
+    "gold_sources": [],
+    "retrieved_sources": [
+      "simulation/README.md",
+      "README.md",
+      "preprocessing/README.md",
+      "preprocessing/4_generate_candidate_paths.py",
+      "simulation/src/main/java/porto/sweep/sim/ObjectiveMetricsAccumulator.java"
+    ],
+    "gold_source_rank": null,
+    "recall_at_1": null,
+    "recall_at_3": null,
+    "recall_at_5": null,
+    "reciprocal_rank": null,
+    "gold_source_coverage_at_3": null,
+    "gold_source_coverage_at_5": null,
+    "all_gold_sources_at_5": null,
+    "retrieval_latency_sec": 1.0367,
+    "matched_symbols": [
+      "Candidate"
+    ],
+    "code_base_sources": [
+      "simulation/README.md:1-38",
+      "README.md:120-129",
+      "simulation/README.md:194-201",
+      "README.md:26-72",
+      "preprocessing/README.md:701-769",
+      "README.md:1-29",
+      "preprocessing/4_generate_candidate_paths.py:715-752",
+      "simulation/src/main/java/porto/sweep/sim/ObjectiveMetricsAccumulator.java:323-352",
+      "preprocessing/README.md:35-87",
+      "preprocessing/README.md:381-448"
+    ],
+    "code_symbol_sources": [
+      "preprocessing/4_generate_candidate_paths.py:76-133"
+    ],
+    "code_symbol_hit_count": 1
+  },
+  {
+    "id": "q049",
+    "category": "unanswerable",
+    "difficulty": "medium",
+    "answerable": false,
+    "question": "What percentage of Porto taxi drivers said they preferred familiar routes in interviews?",
+    "gold_sources": [],
+    "retrieved_sources": [
+      "preprocessing/README.md",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java",
+      "README.md",
+      "simulation/README.md",
+      "simulation/src/main/java/porto/sweep/sim/TaxiState.java",
+      "simulation/src/main/java/porto/sweep/config/TaxiClassProfile.java"
+    ],
+    "gold_source_rank": null,
+    "recall_at_1": null,
+    "recall_at_3": null,
+    "recall_at_5": null,
+    "reciprocal_rank": null,
+    "gold_source_coverage_at_3": null,
+    "gold_source_coverage_at_5": null,
+    "all_gold_sources_at_5": null,
+    "retrieval_latency_sec": 1.1065,
+    "matched_symbols": [],
+    "code_base_sources": [
+      "preprocessing/README.md:1-38",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java:873-903",
+      "README.md:120-129",
+      "simulation/README.md:1-38",
+      "simulation/src/main/java/porto/sweep/sim/TaxiState.java:1-56",
+      "simulation/src/main/java/porto/sweep/config/TaxiClassProfile.java:1-30"
+    ],
+    "code_symbol_sources": [],
+    "code_symbol_hit_count": 0
+  },
+  {
+    "id": "q050",
+    "category": "unanswerable",
+    "difficulty": "medium",
+    "answerable": false,
+    "question": "What was the measured queue length at every traffic light during the best simulation run?",
+    "gold_sources": [],
+    "retrieved_sources": [
+      "simulation/src/main/java/porto/sweep/sim/SweepParameters.java",
+      "simulation/examples/quickstart.properties",
+      "simulation/README.md",
+      "README.md",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java"
+    ],
+    "gold_source_rank": null,
+    "recall_at_1": null,
+    "recall_at_3": null,
+    "recall_at_5": null,
+    "reciprocal_rank": null,
+    "gold_source_coverage_at_3": null,
+    "gold_source_coverage_at_5": null,
+    "all_gold_sources_at_5": null,
+    "retrieval_latency_sec": 1.0896,
+    "matched_symbols": [],
+    "code_base_sources": [
+      "simulation/src/main/java/porto/sweep/sim/SweepParameters.java:1-27",
+      "simulation/examples/quickstart.properties:1-47",
+      "simulation/README.md:171-197",
+      "README.md:1-29",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java:636-673",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java:463-496"
+    ],
+    "code_symbol_sources": [],
+    "code_symbol_hit_count": 0
+  }
+]
