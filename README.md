@@ -1177,18 +1177,6 @@ The results should be interpreted within the scope of the experiment.
 
 ---
 
-# Portfolio Summary
-
-> Built and experimentally evaluated a fully local RAG system for technical question answering over a transportation-simulation codebase. The system combines dense/BM25 retrieval, reciprocal-rank fusion, source diversification, same-source context expansion, and dependency-aware cross-file evidence expansion. A 216-configuration retrieval sweep and multiple ablations rejected both an LLM reranker and symbol-aware first-stage ranking when they failed to justify their complexity. On a frozen 40-question multi-hop held-out benchmark, the final architecture achieved **100% Recall@5, 83.1% mean gold-source coverage in generation context, 60% complete evidence-chain recovery, 97.5% abstention accuracy, 100% citation validity, and 95.8% local-judge expected-fact coverage**.
-
----
-
-# Short CV Version
-
-> Developed a fully local RAG system with hybrid dense/BM25 retrieval and dependency-aware evidence expansion for source-code QA; improved complete multi-file evidence recovery from **30% to 50%** in controlled ablation and achieved **60%** on a frozen multi-hop held-out benchmark with **95.8% expected-fact coverage**.
-
----
-
 # Related Project
 
 The indexed transportation codebase is:
