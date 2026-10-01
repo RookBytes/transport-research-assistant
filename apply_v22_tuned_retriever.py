@@ -108,15 +108,6 @@ def patch_rag() -> int:
         r"(self\.index\.(?:hybrid_search|search_hybrid)\(\s*query\s*,)(.*?)(\))",
     ]
 
-    explicit_args = (
-        "\n                top_k=self.settings.top_k,"
-        "\n                candidate_k=10,"
-        "\n                rrf_k=20,"
-        "\n                path_weight=1.0,"
-        "\n                max_chunks_per_source=1,"
-        "\n            "
-    )
-
     for pat in call_patterns:
         m = re.search(pat, text, flags=re.DOTALL)
         if not m:

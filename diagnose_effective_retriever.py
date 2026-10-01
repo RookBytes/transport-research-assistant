@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import inspect
 import json
-from pathlib import Path
 
 from transport_rag.config import settings
 from transport_rag.rag import RAGService
