@@ -1,0 +1,13 @@
+{
+  "mode": "retrieval",
+  "questions": 50,
+  "answerable_questions": 40,
+  "unanswerable_questions": 10,
+  "retrieval": {
+    "recall_at_1": 0.65,
+    "recall_at_3": 0.925,
+    "recall_at_5": 0.925,
+    "mrr": 0.7791666666666667
+  },
+  "retriever": "hybrid"
+}

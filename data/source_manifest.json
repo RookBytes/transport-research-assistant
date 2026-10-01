@@ -1,0 +1,17 @@
+{
+  "initial_corpus": "porto-route-simulation",
+  "recommended_priority_sources": [
+    "README.md",
+    "preprocessing/README.md",
+    "simulation/README.md",
+    "simulation/examples/**/*.properties",
+    "simulation/src/main/java/**/*.java",
+    "preprocessing/*.py"
+  ],
+  "excluded_by_default": [
+    "large CSV data files",
+    "build outputs",
+    "binary files",
+    ".git metadata"
+  ]
+}

@@ -1,0 +1,4 @@
+{"id": "q001", "question": "What four error components are included in the default objective?", "answerable": true, "gold_sources": ["simulation/README.md"], "notes": "Should identify route-share JSD, edge-flow WMAE, travel-time WMAE, novelty-rate error."}
+{"id": "q002", "question": "Which configuration property disables dynamic rerouting?", "answerable": true, "gold_sources": ["simulation/README.md"], "notes": "Expected evidence mentions maxReroutesGrid=0."}
+{"id": "q003", "question": "Why is the free-flow edge lookup used with inferred background traffic?", "answerable": true, "gold_sources": ["preprocessing/README.md"], "notes": "Expected evidence mentions avoiding double-counting congestion."}
+{"id": "q004", "question": "What was the weather in Porto on the day the best experiment ran?", "answerable": false, "gold_sources": [], "notes": "Deliberately unanswerable; system should abstain."}

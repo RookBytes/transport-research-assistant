@@ -1,0 +1,21 @@
+{
+  "mode": "full",
+  "questions": 50,
+  "answerable_questions": 40,
+  "unanswerable_questions": 10,
+  "retrieval": {
+    "recall_at_1": 0.675,
+    "recall_at_3": 0.925,
+    "recall_at_5": 0.95,
+    "mrr": 0.8104166666666667
+  },
+  "generation": {
+    "abstention_accuracy": 0.9,
+    "mean_total_latency_sec": 5.92061,
+    "mean_answer_latency_sec": 5.920608,
+    "citation_validity": 1.0,
+    "mean_fact_coverage_local_judge": 0.8255208333333334,
+    "judge_note": "Fact coverage is graded by the configured local Ollama model and is not an independent human score."
+  },
+  "retriever": "hybrid"
+}

@@ -1,0 +1,2485 @@
+[
+  {
+    "id": "q001",
+    "category": "preprocessing",
+    "difficulty": "easy",
+    "answerable": true,
+    "question": "What are the five preprocessing stages, in order?",
+    "gold_sources": [
+      "preprocessing/README.md"
+    ],
+    "retrieved_sources": [
+      "preprocessing/README.md",
+      "preprocessing/run_all_pipeline.py",
+      "README.md",
+      "preprocessing/1_porto_map_match.py"
+    ],
+    "gold_source_rank": 1,
+    "recall_at_1": 1.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 1.0,
+    "retrieval_latency_sec": 7.1192,
+    "answer": "The five preprocessing stages, in order, are:  \n1. Map‑match raw taxi GPS trajectories to directed road edges.  \n2. Infer hourly background traffic and generate a free‑flow edge lookup.  \n3. Aggregate observed trips into OD‑specific route shares.  \n4. Generate realistic candidate routes and route waypoints.  \n5. Convert the GraphML network into length‑ and time‑weighted rerouting CSVs. [S1]",
+    "abstained": false,
+    "expected_abstain": false,
+    "abstention_correct": true,
+    "valid_citation_ids": 1,
+    "cited_source_ids": 1,
+    "citation_validity": 1.0,
+    "answer_latency_sec": 16.843,
+    "total_latency_sec": 16.843,
+    "fact_coverage": 1.0,
+    "judge_details": [
+      {
+        "fact": "Map-match raw taxi GPS trajectories to directed road edges",
+        "covered": true
+      },
+      {
+        "fact": "Infer hourly background traffic and generate a free-flow edge lookup",
+        "covered": true
+      },
+      {
+        "fact": "Aggregate observed trips into OD-specific route shares",
+        "covered": true
+      },
+      {
+        "fact": "Generate candidate routes and route waypoints",
+        "covered": true
+      },
+      {
+        "fact": "Convert the GraphML road network into length- and time-weighted rerouting CSVs",
+        "covered": true
+      }
+    ],
+    "judge_status": "ok",
+    "judge_attempts": 1,
+    "judge_fallback_used": false,
+    "judge_error": null
+  },
+  {
+    "id": "q002",
+    "category": "preprocessing",
+    "difficulty": "medium",
+    "answerable": true,
+    "question": "Which preprocessing stages depend directly on the map-matched output from stage 1, and which later stage depends on OD route shares?",
+    "gold_sources": [
+      "preprocessing/README.md"
+    ],
+    "retrieved_sources": [
+      "preprocessing/README.md",
+      "preprocessing/3_build_od_route_shares.py",
+      "preprocessing/run_all_pipeline.py",
+      "README.md",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java"
+    ],
+    "gold_source_rank": 1,
+    "recall_at_1": 1.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 1.0,
+    "retrieval_latency_sec": 0.2929,
+    "answer": "According to the project overview, stages 2 and 3 both depend on the map‑matched output from stage 1, while stage 4 depends on the OD route‑share output from stage 3. [S1]",
+    "abstained": false,
+    "expected_abstain": false,
+    "abstention_correct": true,
+    "valid_citation_ids": 1,
+    "cited_source_ids": 1,
+    "citation_validity": 1.0,
+    "answer_latency_sec": 8.4516,
+    "total_latency_sec": 8.4516,
+    "fact_coverage": 0.6666666666666666,
+    "judge_details": [
+      {
+        "fact": "Stages 2 and 3 depend on stage 1 output",
+        "covered": true
+      },
+      {
+        "fact": "Stage 4 depends on stage 3 OD route-share output",
+        "covered": true
+      },
+      {
+        "fact": "Stage 5 is independent of stages 1-4",
+        "covered": false
+      }
+    ],
+    "judge_status": "ok",
+    "judge_attempts": 2,
+    "judge_fallback_used": false,
+    "judge_error": null
+  },
+  {
+    "id": "q003",
+    "category": "preprocessing",
+    "difficulty": "medium",
+    "answerable": true,
+    "question": "What sequence fields does the map matcher write for a successful trip, and what consistency conditions should hold between them?",
+    "gold_sources": [
+      "preprocessing/README.md"
+    ],
+    "retrieved_sources": [
+      "preprocessing/README.md",
+      "preprocessing/1_porto_map_match.py",
+      "simulation/src/main/java/porto/sweep/eval/JaccardEvaluator.java",
+      "README.md",
+      "simulation/src/main/java/porto/sweep/io/SimpleCsv.java",
+      "simulation/README.md"
+    ],
+    "gold_source_rank": 1,
+    "recall_at_1": 1.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 1.0,
+    "retrieval_latency_sec": 0.1237,
+    "answer": "The map‑matching stage writes three sequence fields for each successful trip:\n\n* **`realized_edge_seq`** – comma‑separated pairs of node identifiers, e.g. `u|v|key; u|v|key; …`  \n* **`realized_edge_travel_sec_seq`** – one travel‑time value per edge, in seconds, e.g. `seconds;seconds;…`  \n* **`realized_node_seq`** – node identifiers separated by semicolons, e.g. `node;node;node;…`\n\nFor a successful trip the following consistency conditions must hold (as stated in the documentation) [S1]:\n\n* The number of realized edges equals the count of entries in **`realized_edge_seq`**.  \n* The number of realized edge travel times equals the count of values in **`realized_edge_travel_sec_seq`**, so both sequences have the same length.  \n* The node sequence contains exactly one more node than there are edges: `len(realized_node_seq) = len(realized_edge_seq) + 1`.\n\nThese conditions ensure that each edge is correctly linked to its travel time and that the sequence forms a valid ordered path.",
+    "abstained": false,
+    "expected_abstain": false,
+    "abstention_correct": true,
+    "valid_citation_ids": 1,
+    "cited_source_ids": 1,
+    "citation_validity": 1.0,
+    "answer_latency_sec": 11.6733,
+    "total_latency_sec": 11.6733,
+    "fact_coverage": 1.0,
+    "judge_details": [
+      {
+        "fact": "realized_edge_seq",
+        "covered": true
+      },
+      {
+        "fact": "realized_edge_travel_sec_seq",
+        "covered": true
+      },
+      {
+        "fact": "realized_node_seq",
+        "covered": true
+      },
+      {
+        "fact": "edge and edge-time sequences must have equal lengths",
+        "covered": true
+      },
+      {
+        "fact": "node sequence must contain exactly one more node than edges",
+        "covered": true
+      }
+    ],
+    "judge_status": "ok",
+    "judge_attempts": 1,
+    "judge_fallback_used": false,
+    "judge_error": null
+  },
+  {
+    "id": "q004",
+    "category": "preprocessing",
+    "difficulty": "hard",
+    "answerable": true,
+    "question": "How is background traffic inferred from observed edge travel times?",
+    "gold_sources": [
+      "preprocessing/README.md",
+      "preprocessing/2_infer_background_from_edge_times.py"
+    ],
+    "retrieved_sources": [
+      "preprocessing/2_infer_background_from_edge_times.py",
+      "preprocessing/README.md",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java",
+      "simulation/src/main/java/porto/sweep/sim/ObjectiveMetricsAccumulator.java",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java",
+      "preprocessing/4_generate_candidate_paths.py"
+    ],
+    "gold_source_rank": 1,
+    "recall_at_1": 1.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 1.0,
+    "retrieval_latency_sec": 0.1112,
+    "answer": "Background traffic is inferred by applying the inverse of the Java congestion equation. For each edge‑hour, the observed travel time (or base cost) is used to compute  \n\n\\[\nx=\\frac{t/t_{0}-1}{\\alpha},\\qquad \n\\text{flow}= \\text{capacity}\\times x^{\\beta},\n\\]\n\nwhere α and β are default parameters (α = 0.5, β = 2.0). The live vehicle contribution is subtracted (the script defaults to removing one vehicle) so that the resulting values represent only background flow. These inferred background‑flow estimates are written to **background_congestion_flow.csv** and also used as a free‑flow lookup for the simulator [S1][S3][S8].",
+    "abstained": false,
+    "expected_abstain": false,
+    "abstention_correct": true,
+    "valid_citation_ids": 3,
+    "cited_source_ids": 3,
+    "citation_validity": 1.0,
+    "answer_latency_sec": 16.7808,
+    "total_latency_sec": 16.7808,
+    "fact_coverage": 1.0,
+    "judge_details": [
+      {
+        "fact": "Groups realized traversals by edge and hour",
+        "covered": true
+      },
+      {
+        "fact": "Uses free-flow information from GraphML",
+        "covered": true
+      },
+      {
+        "fact": "Inverts the Java-style BPR-like congestion equation",
+        "covered": true
+      },
+      {
+        "fact": "t = t0 * [1 + alpha * (flow/capacity)^beta]",
+        "covered": true
+      },
+      {
+        "fact": "Subtracts the observed/self vehicle flow by default to estimate background flow",
+        "covered": true
+      }
+    ],
+    "judge_status": "ok",
+    "judge_attempts": 1,
+    "judge_fallback_used": false,
+    "judge_error": null
+  },
+  {
+    "id": "q005",
+    "category": "preprocessing",
+    "difficulty": "medium",
+    "answerable": true,
+    "question": "Why should sim_edge_lookup_freeflow.csv be used with the inferred background traffic instead of an already-congested observed-time lookup?",
+    "gold_sources": [
+      "preprocessing/README.md"
+    ],
+    "retrieved_sources": [
+      "preprocessing/2_infer_background_from_edge_times.py",
+      "preprocessing/README.md",
+      "simulation/src/main/java/porto/sweep/sim/SweepRunResult.java",
+      "preprocessing/run_all_pipeline.py",
+      "simulation/README.md",
+      "simulation/examples/quickstart.properties"
+    ],
+    "gold_source_rank": 2,
+    "recall_at_1": 0.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 0.5,
+    "retrieval_latency_sec": 0.1447,
+    "answer": "The free‑flow lookup must be used instead of an already‑congested observed‑time lookup because the latter would add congestion information to the background flow, causing double‑counting of traffic effects.  The script deliberately subtracts one observed vehicle so that background_congestion_flow.csv represents pure background traffic while the Java simulator supplies its own live flow; using a free‑flow edge file—derived only from edge length and free‑flow travel times (no observed travel data)—provides a neutral baseline that does not include any congestion information.  This ensures that the two sources of flow are mutually exclusive, as required for accurate simulation results [S1][S3].",
+    "abstained": false,
+    "expected_abstain": false,
+    "abstention_correct": true,
+    "valid_citation_ids": 2,
+    "cited_source_ids": 2,
+    "citation_validity": 1.0,
+    "answer_latency_sec": 7.7558,
+    "total_latency_sec": 7.7558,
+    "fact_coverage": 1.0,
+    "judge_details": [
+      {
+        "fact": "Using both inferred background traffic and already-congested observed times would double-count congestion",
+        "covered": true
+      },
+      {
+        "fact": "sim_edge_lookup_freeflow.csv avoids that double counting",
+        "covered": true
+      }
+    ],
+    "judge_status": "ok",
+    "judge_attempts": 1,
+    "judge_fallback_used": false,
+    "judge_error": null
+  },
+  {
+    "id": "q006",
+    "category": "preprocessing",
+    "difficulty": "medium",
+    "answerable": true,
+    "question": "What does the OD route-share stage aggregate, and what does its default minimum route frequency do?",
+    "gold_sources": [
+      "preprocessing/README.md"
+    ],
+    "retrieved_sources": [
+      "preprocessing/README.md",
+      "preprocessing/3_build_od_route_shares.py",
+      "preprocessing/run_all_pipeline.py",
+      "simulation/README.md",
+      "preprocessing/2_infer_background_from_edge_times.py",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java"
+    ],
+    "gold_source_rank": 1,
+    "recall_at_1": 1.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 1.0,
+    "retrieval_latency_sec": 0.1139,
+    "answer": "The OD‑route‑share stage **aggregates observed trips by grouping identical ordered realized edge sequences**. For each group it determines the origin and destination nodes, counts how many trips (i.e., routes/ODs) occur on that sequence, computes average travel time, distance, speed and circuity, and then derives route‑share and stable‑normalized share values. It may also enrich these aggregates with graph‑derived metrics such as edge lengths and node coordinates [S1].\n\nThe stage’s **default minimum route frequency** is the command‑line option `--min-route-trips`, which defaults to **2**. This means that any route (OD) observed fewer than two trips is discarded; only routes with at least this many observed trips are retained in the output [S7].",
+    "abstained": false,
+    "expected_abstain": false,
+    "abstention_correct": true,
+    "valid_citation_ids": 2,
+    "cited_source_ids": 2,
+    "citation_validity": 1.0,
+    "answer_latency_sec": 6.1962,
+    "total_latency_sec": 6.1962,
+    "fact_coverage": 1.0,
+    "judge_details": [
+      {
+        "fact": "Groups identical ordered realized edge sequences",
+        "covered": true
+      },
+      {
+        "fact": "Counts trips per route and OD",
+        "covered": true
+      },
+      {
+        "fact": "Calculates route shares and stable normalized shares",
+        "covered": true
+      },
+      {
+        "fact": "Default min-route-trips is 2",
+        "covered": true
+      },
+      {
+        "fact": "Routes observed fewer than 2 trips are dropped by default",
+        "covered": true
+      }
+    ],
+    "judge_status": "ok",
+    "judge_attempts": 1,
+    "judge_fallback_used": false,
+    "judge_error": null
+  },
+  {
+    "id": "q007",
+    "category": "preprocessing",
+    "difficulty": "medium",
+    "answerable": true,
+    "question": "What candidate-route families can stage 4 generate?",
+    "gold_sources": [
+      "preprocessing/README.md",
+      "preprocessing/4_generate_candidate_paths.py"
+    ],
+    "retrieved_sources": [
+      "preprocessing/README.md",
+      "preprocessing/4_generate_candidate_paths.py",
+      "README.md",
+      "preprocessing/run_all_pipeline.py",
+      "simulation/README.md",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java"
+    ],
+    "gold_source_rank": 1,
+    "recall_at_1": 1.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 1.0,
+    "retrieval_latency_sec": 0.1211,
+    "answer": "The stage 4 script (`4_generate_candidate_paths.py`) is capable of producing candidate‑route families including:\n\n- **fastest**  \n- **shortest**  \n- **corridor**  \n- **penalty**  \n- **stochastic**  \n- **via**  \n\nThese are the families listed in the documentation for the script [S7].",
+    "abstained": false,
+    "expected_abstain": false,
+    "abstention_correct": true,
+    "valid_citation_ids": 1,
+    "cited_source_ids": 1,
+    "citation_validity": 1.0,
+    "answer_latency_sec": 4.8973,
+    "total_latency_sec": 4.8973,
+    "fact_coverage": 1.0,
+    "judge_details": [
+      {
+        "fact": "fastest",
+        "covered": true
+      },
+      {
+        "fact": "shortest",
+        "covered": true
+      },
+      {
+        "fact": "corridor",
+        "covered": true
+      },
+      {
+        "fact": "penalty",
+        "covered": true
+      },
+      {
+        "fact": "stochastic",
+        "covered": true
+      },
+      {
+        "fact": "via",
+        "covered": true
+      }
+    ],
+    "judge_status": "ok",
+    "judge_attempts": 1,
+    "judge_fallback_used": false,
+    "judge_error": null
+  },
+  {
+    "id": "q008",
+    "category": "preprocessing",
+    "difficulty": "medium",
+    "answerable": true,
+    "question": "What delimiter format must candidate route_node_seq and edge_seq use for the Java loader?",
+    "gold_sources": [
+      "preprocessing/README.md"
+    ],
+    "retrieved_sources": [
+      "preprocessing/README.md",
+      "simulation/README.md",
+      "preprocessing/run_all_pipeline.py",
+      "preprocessing/4_generate_candidate_paths.py",
+      "preprocessing/3_build_od_route_shares.py",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java"
+    ],
+    "gold_source_rank": 1,
+    "recall_at_1": 1.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 1.0,
+    "retrieval_latency_sec": 0.0997,
+    "answer": "The Java loader expects the candidate route file to use a pipe (`|`) delimiter for `route_node_seq` and a semicolon (`;`) delimiter for `edge_seq`【S1】.",
+    "abstained": false,
+    "expected_abstain": false,
+    "abstention_correct": true,
+    "valid_citation_ids": 0,
+    "cited_source_ids": 0,
+    "citation_validity": null,
+    "answer_latency_sec": 5.1839,
+    "total_latency_sec": 5.1839,
+    "fact_coverage": 1.0,
+    "judge_details": [
+      {
+        "fact": "Semicolons separate consecutive sequence items",
+        "covered": true
+      },
+      {
+        "fact": "Vertical bars separate from_node, to_node, and edge key within an edge ID",
+        "covered": true
+      },
+      {
+        "fact": "The format is required by the Java PipeSeq.split() loader",
+        "covered": true
+      }
+    ],
+    "judge_status": "ok",
+    "judge_attempts": 1,
+    "judge_fallback_used": false,
+    "judge_error": null
+  },
+  {
+    "id": "q009",
+    "category": "preprocessing",
+    "difficulty": "medium",
+    "answerable": true,
+    "question": "What are the two stage-5 rerouting graph outputs, and what does each use as its weight?",
+    "gold_sources": [
+      "preprocessing/README.md"
+    ],
+    "retrieved_sources": [
+      "preprocessing/README.md",
+      "simulation/README.md",
+      "README.md",
+      "preprocessing/run_all_pipeline.py",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java"
+    ],
+    "gold_source_rank": 1,
+    "recall_at_1": 1.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 1.0,
+    "retrieval_latency_sec": 0.1088,
+    "answer": "The two stage‑5 rerouting graph outputs are **length_network.csv** and **time_network.csv**. The length network uses the road‑edge distance as its weight, whereas the time network uses the free‑flow travel time as its weight【S8】.",
+    "abstained": false,
+    "expected_abstain": false,
+    "abstention_correct": true,
+    "valid_citation_ids": 0,
+    "cited_source_ids": 0,
+    "citation_validity": null,
+    "answer_latency_sec": 9.329,
+    "total_latency_sec": 9.329,
+    "fact_coverage": 1.0,
+    "judge_details": [
+      {
+        "fact": "length_network.csv uses length_m as weight",
+        "covered": true
+      },
+      {
+        "fact": "time_network.csv uses travel_time_sec as weight",
+        "covered": true
+      }
+    ],
+    "judge_status": "ok",
+    "judge_attempts": 1,
+    "judge_fallback_used": false,
+    "judge_error": null
+  },
+  {
+    "id": "q010",
+    "category": "preprocessing",
+    "difficulty": "hard",
+    "answerable": true,
+    "question": "Why does the preprocessing documentation recommend using the same GraphML for map matching, background inference, route generation, and rerouting conversion?",
+    "gold_sources": [
+      "preprocessing/README.md"
+    ],
+    "retrieved_sources": [
+      "preprocessing/README.md",
+      "README.md",
+      "preprocessing/1_porto_map_match.py"
+    ],
+    "gold_source_rank": 1,
+    "recall_at_1": 1.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 1.0,
+    "retrieval_latency_sec": 0.109,
+    "answer": "The documentation advises using a single, fixed GraphML file for all stages because it guarantees that every stage operates on identical edge identifiers and attributes, preventing double‑counting or missing edges when inferring background traffic, building OD route shares, generating candidate routes, and converting the network to rerouting CSVs; any deviation would break consistency and make debugging difficult [S1].",
+    "abstained": false,
+    "expected_abstain": false,
+    "abstention_correct": true,
+    "valid_citation_ids": 1,
+    "cited_source_ids": 1,
+    "citation_validity": 1.0,
+    "answer_latency_sec": 6.841,
+    "total_latency_sec": 6.841,
+    "fact_coverage": 1.0,
+    "judge_details": [
+      {
+        "fact": "Edge identifiers must remain consistent across stages",
+        "covered": true
+      },
+      {
+        "fact": "Mixing graphs can produce edge IDs that cannot be matched later",
+        "covered": true
+      }
+    ],
+    "judge_status": "ok",
+    "judge_attempts": 1,
+    "judge_fallback_used": false,
+    "judge_error": null
+  },
+  {
+    "id": "q011",
+    "category": "configuration",
+    "difficulty": "easy",
+    "answerable": true,
+    "question": "What are the default seed, number of taxis, and total trips in SweepConfig when they are not specified?",
+    "gold_sources": [
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java"
+    ],
+    "retrieved_sources": [
+      "simulation/README.md",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java",
+      "simulation/src/main/java/porto/sweep/sim/SweepParameters.java",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java",
+      "simulation/src/main/java/porto/sweep/sim/SweepRunResult.java",
+      "simulation/src/main/java/porto/sweep/config/TaxiClassProfile.java"
+    ],
+    "gold_source_rank": 2,
+    "recall_at_1": 0.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 0.5,
+    "retrieval_latency_sec": 0.1179,
+    "answer": "The SweepConfig defaults are: seed = 42, number of taxis = 100, and total trips = 1000 [S1].",
+    "abstained": false,
+    "expected_abstain": false,
+    "abstention_correct": true,
+    "valid_citation_ids": 1,
+    "cited_source_ids": 1,
+    "citation_validity": 1.0,
+    "answer_latency_sec": 3.4298,
+    "total_latency_sec": 3.4298,
+    "fact_coverage": 1.0,
+    "judge_details": [
+      {
+        "fact": "seed defaults to 42",
+        "covered": true
+      },
+      {
+        "fact": "nTaxis defaults to 100",
+        "covered": true
+      },
+      {
+        "fact": "totalTrips defaults to 1000",
+        "covered": true
+      }
+    ],
+    "judge_status": "ok",
+    "judge_attempts": 5,
+    "judge_fallback_used": true,
+    "judge_error": null
+  },
+  {
+    "id": "q012",
+    "category": "configuration",
+    "difficulty": "easy",
+    "answerable": true,
+    "question": "Which tripStartMode values are accepted, and what does immediate mode mean?",
+    "gold_sources": [
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java",
+      "simulation/README.md"
+    ],
+    "retrieved_sources": [
+      "simulation/README.md",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java",
+      "simulation/src/main/java/porto/sweep/sim/SweepRunResult.java",
+      "preprocessing/1_porto_map_match.py",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java",
+      "simulation/examples/quickstart.properties"
+    ],
+    "gold_source_rank": 1,
+    "recall_at_1": 1.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 1.0,
+    "retrieval_latency_sec": 0.1144,
+    "answer": "According to the configuration documentation, `tripStartMode` can be set to either **immediate** or **hourly**【S1】. The *immediate* option restores the default (old) behavior, which does not use hourly‑demand weighting and follows the original route‑choice algorithm【S6】.",
+    "abstained": false,
+    "expected_abstain": false,
+    "abstention_correct": true,
+    "valid_citation_ids": 0,
+    "cited_source_ids": 0,
+    "citation_validity": null,
+    "answer_latency_sec": 7.0618,
+    "total_latency_sec": 7.0618,
+    "fact_coverage": 0.5,
+    "judge_details": [
+      {
+        "fact": "Accepted values are immediate and hourly",
+        "covered": true
+      },
+      {
+        "fact": "Immediate preserves the old behavior / requests start immediately",
+        "covered": false
+      }
+    ],
+    "judge_status": "ok",
+    "judge_attempts": 1,
+    "judge_fallback_used": false,
+    "judge_error": null
+  },
+  {
+    "id": "q013",
+    "category": "configuration",
+    "difficulty": "medium",
+    "answerable": true,
+    "question": "What validation rules are applied to hourlyDemandWeights?",
+    "gold_sources": [
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java"
+    ],
+    "retrieved_sources": [
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java",
+      "simulation/README.md",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java",
+      "simulation/src/main/java/porto/sweep/sim/ObjectiveMetricsAccumulator.java",
+      "README.md",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java"
+    ],
+    "gold_source_rank": 1,
+    "recall_at_1": 1.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 1.0,
+    "retrieval_latency_sec": 0.1055,
+    "answer": "The code enforces that `hourlyDemandWeights` contains exactly 24 comma‑separated values [S2], each value must be a finite non‑negative double [S1], at least one of the values must be positive, and the sum of all values must be greater than zero [S1].",
+    "abstained": false,
+    "expected_abstain": false,
+    "abstention_correct": true,
+    "valid_citation_ids": 2,
+    "cited_source_ids": 2,
+    "citation_validity": 1.0,
+    "answer_latency_sec": 5.662,
+    "total_latency_sec": 5.662,
+    "fact_coverage": 1.0,
+    "judge_details": [
+      {
+        "fact": "Must contain exactly 24 values",
+        "covered": true
+      },
+      {
+        "fact": "Values must be finite and non-negative",
+        "covered": true
+      },
+      {
+        "fact": "At least one value must be positive",
+        "covered": true
+      }
+    ],
+    "judge_status": "ok",
+    "judge_attempts": 1,
+    "judge_fallback_used": false,
+    "judge_error": null
+  },
+  {
+    "id": "q014",
+    "category": "configuration",
+    "difficulty": "easy",
+    "answerable": true,
+    "question": "Which edgeHabitMode values are accepted?",
+    "gold_sources": [
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java",
+      "simulation/README.md"
+    ],
+    "retrieved_sources": [
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java",
+      "simulation/README.md",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java",
+      "simulation/src/main/java/porto/sweep/sim/TaxiState.java",
+      "preprocessing/4_generate_candidate_paths.py",
+      "simulation/examples/quickstart.properties"
+    ],
+    "gold_source_rank": 1,
+    "recall_at_1": 1.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 1.0,
+    "retrieval_latency_sec": 0.0992,
+    "answer": "The configuration validates `edgeHabitMode` against the literals “off”, “collective”, or “taxi” [S1] and also documents that these are the accepted values for `edgeHabitMode` [S2].",
+    "abstained": false,
+    "expected_abstain": false,
+    "abstention_correct": true,
+    "valid_citation_ids": 2,
+    "cited_source_ids": 2,
+    "citation_validity": 1.0,
+    "answer_latency_sec": 4.3884,
+    "total_latency_sec": 4.3884,
+    "fact_coverage": 1.0,
+    "judge_details": [
+      {
+        "fact": "off",
+        "covered": true
+      },
+      {
+        "fact": "collective",
+        "covered": true
+      },
+      {
+        "fact": "taxi",
+        "covered": true
+      }
+    ],
+    "judge_status": "ok",
+    "judge_attempts": 2,
+    "judge_fallback_used": false,
+    "judge_error": null
+  },
+  {
+    "id": "q015",
+    "category": "configuration",
+    "difficulty": "medium",
+    "answerable": true,
+    "question": "What are the default rerouteTopK, rerouteMaxRelTime, and rerouteMaxEdgeJaccard values in SweepConfig?",
+    "gold_sources": [
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java"
+    ],
+    "retrieved_sources": [
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java",
+      "simulation/README.md",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java",
+      "simulation/src/main/java/porto/sweep/sim/SweepParameters.java",
+      "simulation/src/main/java/porto/sweep/config/TaxiClassProfile.java",
+      "simulation/examples/quickstart.properties"
+    ],
+    "gold_source_rank": 1,
+    "recall_at_1": 1.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 1.0,
+    "retrieval_latency_sec": 0.1074,
+    "answer": "The SweepConfig class reads these parameters from the configuration file; `rerouteTopK` is parsed with a fallback of “3”, giving it a default value of 3, while `rerouteMaxRelTime` and `rerouteMaxEdgeJaccard` are read without a fallback, so no default is defined in SweepConfig [S9].",
+    "abstained": false,
+    "expected_abstain": false,
+    "abstention_correct": true,
+    "valid_citation_ids": 1,
+    "cited_source_ids": 1,
+    "citation_validity": 1.0,
+    "answer_latency_sec": 9.5986,
+    "total_latency_sec": 9.5986,
+    "fact_coverage": 0.6666666666666666,
+    "judge_details": [
+      {
+        "fact": "rerouteTopK defaults to 3",
+        "covered": true
+      },
+      {
+        "fact": "rerouteMaxRelTime defaults to 1.35",
+        "covered": true
+      },
+      {
+        "fact": "rerouteMaxEdgeJaccard defaults to 0.85",
+        "covered": false
+      }
+    ],
+    "judge_status": "ok",
+    "judge_attempts": 1,
+    "judge_fallback_used": false,
+    "judge_error": null
+  },
+  {
+    "id": "q016",
+    "category": "configuration",
+    "difficulty": "medium",
+    "answerable": true,
+    "question": "What are the defaults for learning completed routes as future candidate routes?",
+    "gold_sources": [
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java"
+    ],
+    "retrieved_sources": [
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java",
+      "preprocessing/4_generate_candidate_paths.py",
+      "preprocessing/README.md",
+      "README.md",
+      "simulation/README.md",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java"
+    ],
+    "gold_source_rank": 1,
+    "recall_at_1": 1.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 1.0,
+    "retrieval_latency_sec": 0.1245,
+    "answer": "I don't have enough evidence in the indexed sources to answer that reliably.",
+    "abstained": true,
+    "expected_abstain": false,
+    "abstention_correct": false,
+    "valid_citation_ids": 0,
+    "cited_source_ids": 0,
+    "citation_validity": null,
+    "answer_latency_sec": 4.5312,
+    "total_latency_sec": 4.5312,
+    "fact_coverage": 0.0,
+    "judge_details": [],
+    "judge_status": "answerable_abstained",
+    "judge_attempts": 0,
+    "judge_fallback_used": false,
+    "judge_error": null
+  },
+  {
+    "id": "q017",
+    "category": "configuration",
+    "difficulty": "hard",
+    "answerable": true,
+    "question": "What are the default behavioral parameter grid values in SweepConfig?",
+    "gold_sources": [
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java"
+    ],
+    "retrieved_sources": [
+      "simulation/README.md",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java",
+      "simulation/src/main/java/porto/sweep/sim/SweepParameters.java",
+      "simulation/src/main/java/porto/sweep/sim/SweepRunResult.java",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java"
+    ],
+    "gold_source_rank": 6,
+    "recall_at_1": 0.0,
+    "recall_at_3": 0.0,
+    "recall_at_5": 0.0,
+    "reciprocal_rank": 0.16666666666666666,
+    "retrieval_latency_sec": 0.1041,
+    "answer": "I don't have enough evidence in the indexed sources to answer that reliably.",
+    "abstained": true,
+    "expected_abstain": false,
+    "abstention_correct": false,
+    "valid_citation_ids": 0,
+    "cited_source_ids": 0,
+    "citation_validity": null,
+    "answer_latency_sec": 4.1686,
+    "total_latency_sec": 4.1686,
+    "fact_coverage": 0.0,
+    "judge_details": [],
+    "judge_status": "answerable_abstained",
+    "judge_attempts": 0,
+    "judge_fallback_used": false,
+    "judge_error": null
+  },
+  {
+    "id": "q018",
+    "category": "configuration",
+    "difficulty": "medium",
+    "answerable": true,
+    "question": "What are the default traffic-physics grid values?",
+    "gold_sources": [
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java"
+    ],
+    "retrieved_sources": [
+      "simulation/README.md",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java",
+      "simulation/src/main/java/porto/sweep/sim/SweepParameters.java",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java",
+      "README.md"
+    ],
+    "gold_source_rank": 2,
+    "recall_at_1": 0.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 0.5,
+    "retrieval_latency_sec": 0.0943,
+    "answer": "The SweepConfig class defines the traffic‑physics parameters as final doubles with no explicit defaults; they are populated by `parseDoubleList`, which uses a fallback value of **0.5** for `bprAlphaGrid`, **2.0** for `bprBetaGrid`, and **1.0** for `capacityScaleGrid` (see [S10] lines 195‑216). The `backgroundTrafficScale` is read from the configuration property `backgroundTrafficScale` (no separate default is set in the code) (see [S3] line 4).  \n\nThus the default traffic‑physics grid values are:\n\n- **bprAlpha = 0.5**  \n- **bprBeta = 2.0**  \n- **capacityScale = 1.0**  \n- **backgroundTrafficScale = value from `config.backgroundTrafficScale` (or defaults to 1.0 if not specified)**  \n\n[S10][S3]",
+    "abstained": false,
+    "expected_abstain": false,
+    "abstention_correct": true,
+    "valid_citation_ids": 2,
+    "cited_source_ids": 2,
+    "citation_validity": 1.0,
+    "answer_latency_sec": 10.3691,
+    "total_latency_sec": 10.3691,
+    "fact_coverage": 1.0,
+    "judge_details": [
+      {
+        "fact": "bprAlphaGrid=0.5",
+        "covered": true
+      },
+      {
+        "fact": "bprBetaGrid=2.0",
+        "covered": true
+      },
+      {
+        "fact": "capacityScaleGrid=1.0",
+        "covered": true
+      },
+      {
+        "fact": "backgroundTrafficScaleGrid defaults to backgroundTrafficScale, whose default is 1.0",
+        "covered": true
+      }
+    ],
+    "judge_status": "ok",
+    "judge_attempts": 1,
+    "judge_fallback_used": false,
+    "judge_error": null
+  },
+  {
+    "id": "q019",
+    "category": "configuration",
+    "difficulty": "hard",
+    "answerable": true,
+    "question": "What are the four default objective weights?",
+    "gold_sources": [
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java"
+    ],
+    "retrieved_sources": [
+      "simulation/README.md",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java",
+      "README.md",
+      "simulation/src/main/java/porto/sweep/sim/ObjectiveMetricsAccumulator.java",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java",
+      "preprocessing/README.md"
+    ],
+    "gold_source_rank": 2,
+    "recall_at_1": 0.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 0.5,
+    "retrieval_latency_sec": 0.1385,
+    "answer": "I don't have enough evidence in the indexed sources to answer that reliably.",
+    "abstained": true,
+    "expected_abstain": false,
+    "abstention_correct": false,
+    "valid_citation_ids": 0,
+    "cited_source_ids": 0,
+    "citation_validity": null,
+    "answer_latency_sec": 5.0648,
+    "total_latency_sec": 5.0648,
+    "fact_coverage": 0.0,
+    "judge_details": [],
+    "judge_status": "answerable_abstained",
+    "judge_attempts": 0,
+    "judge_fallback_used": false,
+    "judge_error": null
+  },
+  {
+    "id": "q020",
+    "category": "configuration",
+    "difficulty": "hard",
+    "answerable": true,
+    "question": "What are the default route-matching shortlist, scoring, and acceptance settings?",
+    "gold_sources": [
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java"
+    ],
+    "retrieved_sources": [
+      "simulation/README.md",
+      "simulation/src/main/java/porto/sweep/eval/JaccardEvaluator.java",
+      "preprocessing/3_build_od_route_shares.py",
+      "README.md",
+      "preprocessing/README.md",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java"
+    ],
+    "gold_source_rank": null,
+    "recall_at_1": 0.0,
+    "recall_at_3": 0.0,
+    "recall_at_5": 0.0,
+    "reciprocal_rank": 0.0,
+    "retrieval_latency_sec": 0.0972,
+    "answer": "The default route‑matching shortlist uses **edge‑set Jaccard** as the primary filter, followed by scoring with **normalized longest common subsequence (NLCS)** and **edge‑bigram Jaccard**. Eligibility requires a finite loss and a completion rate of at least `objectiveMinimumCompletionRate` (default 0.995). Runs that fail this eligibility are ranked only by their completion rate, then by loss; there is no separate acceptance threshold beyond the eligibility rule. [S1]",
+    "abstained": false,
+    "expected_abstain": false,
+    "abstention_correct": true,
+    "valid_citation_ids": 1,
+    "cited_source_ids": 1,
+    "citation_validity": 1.0,
+    "answer_latency_sec": 11.9997,
+    "total_latency_sec": 11.9997,
+    "fact_coverage": 1.0,
+    "judge_details": [
+      {
+        "fact": "routeMatchShortlistTopK=3",
+        "covered": true
+      },
+      {
+        "fact": "routeMatchShortlistMinJaccard=0.20",
+        "covered": true
+      },
+      {
+        "fact": "routeMatchNlcsWeight=0.70",
+        "covered": true
+      },
+      {
+        "fact": "routeMatchBigramWeight=0.30",
+        "covered": true
+      },
+      {
+        "fact": "routeMatchMinScore=0.70",
+        "covered": true
+      },
+      {
+        "fact": "routeMatchMinMargin=0.10",
+        "covered": true
+      }
+    ],
+    "judge_status": "ok",
+    "judge_attempts": 1,
+    "judge_fallback_used": false,
+    "judge_error": null
+  },
+  {
+    "id": "q021",
+    "category": "results",
+    "difficulty": "medium",
+    "answerable": true,
+    "question": "What was the headline result of the final 20-seed replication?",
+    "gold_sources": [
+      "README.md"
+    ],
+    "retrieved_sources": [
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java",
+      "README.md",
+      "preprocessing/2_infer_background_from_edge_times.py",
+      "simulation/README.md",
+      "preprocessing/README.md",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java"
+    ],
+    "gold_source_rank": 2,
+    "recall_at_1": 0.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 0.5,
+    "retrieval_latency_sec": 0.1033,
+    "answer": "The headline result of the final 20‑seed replication was that the behavioral no‑reroute configuration achieved a **3.91 % lower mean objective loss** compared with dynamic‑fastest routing [S1].",
+    "abstained": false,
+    "expected_abstain": false,
+    "abstention_correct": true,
+    "valid_citation_ids": 1,
+    "cited_source_ids": 1,
+    "citation_validity": 1.0,
+    "answer_latency_sec": 4.5463,
+    "total_latency_sec": 4.5463,
+    "fact_coverage": 1.0,
+    "judge_details": [
+      {
+        "fact": "Behavioral no-reroute configuration achieved 3.91% lower mean objective loss than dynamic-fastest routing",
+        "covered": true
+      },
+      {
+        "fact": "Final comparison used 20 seeds",
+        "covered": true
+      },
+      {
+        "fact": "Each run simulated 5,000 trips",
+        "covered": true
+      },
+      {
+        "fact": "500,000 trip evaluations were produced across the compared configurations",
+        "covered": true
+      }
+    ],
+    "judge_status": "ok",
+    "judge_attempts": 1,
+    "judge_fallback_used": false,
+    "judge_error": null
+  },
+  {
+    "id": "q022",
+    "category": "metrics",
+    "difficulty": "easy",
+    "answerable": true,
+    "question": "Which four error components make up the default objective loss?",
+    "gold_sources": [
+      "README.md",
+      "simulation/README.md"
+    ],
+    "retrieved_sources": [
+      "simulation/README.md",
+      "simulation/src/main/java/porto/sweep/sim/ObjectiveMetricsAccumulator.java",
+      "README.md",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java",
+      "preprocessing/README.md"
+    ],
+    "gold_source_rank": 1,
+    "recall_at_1": 1.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 1.0,
+    "retrieval_latency_sec": 0.1258,
+    "answer": "The default objective loss is composed of four components: final route‑share Jensen–Shannon divergence; edge‑flow weighted mean absolute error; travel‑time weighted mean absolute error (in seconds); and novelty‑rate error【S1】.",
+    "abstained": false,
+    "expected_abstain": false,
+    "abstention_correct": true,
+    "valid_citation_ids": 0,
+    "cited_source_ids": 0,
+    "citation_validity": null,
+    "answer_latency_sec": 4.554,
+    "total_latency_sec": 4.5541,
+    "fact_coverage": 1.0,
+    "judge_details": [
+      {
+        "fact": "route-share Jensen-Shannon divergence",
+        "covered": true
+      },
+      {
+        "fact": "edge-flow weighted mean absolute error",
+        "covered": true
+      },
+      {
+        "fact": "travel-time weighted mean absolute error",
+        "covered": true
+      },
+      {
+        "fact": "novelty-rate error",
+        "covered": true
+      }
+    ],
+    "judge_status": "ok",
+    "judge_attempts": 1,
+    "judge_fallback_used": false,
+    "judge_error": null
+  },
+  {
+    "id": "q023",
+    "category": "metrics",
+    "difficulty": "medium",
+    "answerable": true,
+    "question": "How is objective loss calculated from the component errors?",
+    "gold_sources": [
+      "simulation/README.md"
+    ],
+    "retrieved_sources": [
+      "simulation/README.md",
+      "simulation/src/main/java/porto/sweep/sim/ObjectiveMetricsAccumulator.java",
+      "README.md",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java"
+    ],
+    "gold_source_rank": 1,
+    "recall_at_1": 1.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 1.0,
+    "retrieval_latency_sec": 0.1231,
+    "answer": "The objective loss is calculated by weighting each component’s error (final route‑share Jensen–Shannon divergence, edge‑flow weighted MAE, travel‑time weighted MAE in seconds, and novelty‑rate error) with its configured scale factor and then dividing the sum of these weighted errors by the sum of the scales: objectiveLoss = Σ (weight_i * error_i / scale_i) / Σ weight_i [S1].",
+    "abstained": false,
+    "expected_abstain": false,
+    "abstention_correct": true,
+    "valid_citation_ids": 1,
+    "cited_source_ids": 1,
+    "citation_validity": 1.0,
+    "answer_latency_sec": 5.2782,
+    "total_latency_sec": 5.2782,
+    "fact_coverage": 1.0,
+    "judge_details": [
+      {
+        "fact": "Each error is divided by its configured scale",
+        "covered": true
+      },
+      {
+        "fact": "Each normalized error is multiplied by its configured weight",
+        "covered": true
+      },
+      {
+        "fact": "Weighted normalized errors are summed and divided by the sum of weights",
+        "covered": true
+      },
+      {
+        "fact": "Lower loss is better",
+        "covered": true
+      }
+    ],
+    "judge_status": "ok",
+    "judge_attempts": 2,
+    "judge_fallback_used": false,
+    "judge_error": null
+  },
+  {
+    "id": "q024",
+    "category": "metrics",
+    "difficulty": "medium",
+    "answerable": true,
+    "question": "What makes a run eligible for objective-based ranking, and what is the default minimum completion rate?",
+    "gold_sources": [
+      "simulation/README.md",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java"
+    ],
+    "retrieved_sources": [
+      "simulation/README.md",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java",
+      "simulation/src/main/java/porto/sweep/sim/ObjectiveMetricsAccumulator.java",
+      "README.md",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java"
+    ],
+    "gold_source_rank": 1,
+    "recall_at_1": 1.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 1.0,
+    "retrieval_latency_sec": 0.1471,
+    "answer": "A run is eligible for objective‑based ranking when either `objectiveEnabled` is true, or the run’s completion rate meets or exceeds the configured `objectiveMinimumCompletionRate` (default 0.995) and its `objectiveLoss` value is finite [S9][S6].",
+    "abstained": false,
+    "expected_abstain": false,
+    "abstention_correct": true,
+    "valid_citation_ids": 2,
+    "cited_source_ids": 2,
+    "citation_validity": 1.0,
+    "answer_latency_sec": 5.7619,
+    "total_latency_sec": 5.7619,
+    "fact_coverage": 1.0,
+    "judge_details": [
+      {
+        "fact": "Loss must be finite",
+        "covered": true
+      },
+      {
+        "fact": "Completion rate must meet objectiveMinimumCompletionRate",
+        "covered": true
+      },
+      {
+        "fact": "Default objectiveMinimumCompletionRate is 0.995",
+        "covered": true
+      }
+    ],
+    "judge_status": "ok",
+    "judge_attempts": 2,
+    "judge_fallback_used": false,
+    "judge_error": null
+  },
+  {
+    "id": "q025",
+    "category": "metrics",
+    "difficulty": "medium",
+    "answerable": true,
+    "question": "How are runs ranked when objectiveEnabled is false?",
+    "gold_sources": [
+      "simulation/README.md"
+    ],
+    "retrieved_sources": [
+      "simulation/README.md",
+      "simulation/src/main/java/porto/sweep/sim/ObjectiveMetricsAccumulator.java",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java",
+      "simulation/src/main/java/porto/sweep/sim/SweepRunResult.java"
+    ],
+    "gold_source_rank": 1,
+    "recall_at_1": 1.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 1.0,
+    "retrieval_latency_sec": 0.1206,
+    "answer": "When `objectiveEnabled` is set to false, the comparator first orders runs by their `completionRate` in descending order; if two runs have the same completion rate, they are ordered by `objectiveLoss` in ascending order (i.e., lower loss ranks higher) [S3].",
+    "abstained": false,
+    "expected_abstain": false,
+    "abstention_correct": true,
+    "valid_citation_ids": 1,
+    "cited_source_ids": 1,
+    "citation_validity": 1.0,
+    "answer_latency_sec": 5.5704,
+    "total_latency_sec": 5.5704,
+    "fact_coverage": 1.0,
+    "judge_details": [
+      {
+        "fact": "Ranking uses completion rate first",
+        "covered": true
+      },
+      {
+        "fact": "Then mean best Jaccard similarity",
+        "covered": true
+      }
+    ],
+    "judge_status": "ok",
+    "judge_attempts": 1,
+    "judge_fallback_used": false,
+    "judge_error": null
+  },
+  {
+    "id": "q026",
+    "category": "metrics",
+    "difficulty": "hard",
+    "answerable": true,
+    "question": "How does realized-route classification compare a simulated route with observed routes?",
+    "gold_sources": [
+      "simulation/README.md"
+    ],
+    "retrieved_sources": [
+      "simulation/README.md",
+      "README.md",
+      "simulation/src/main/java/porto/sweep/eval/JaccardEvaluator.java",
+      "preprocessing/3_build_od_route_shares.py",
+      "preprocessing/README.md",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java"
+    ],
+    "gold_source_rank": 1,
+    "recall_at_1": 1.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 1.0,
+    "retrieval_latency_sec": 0.1083,
+    "answer": "Realized‑route classification compares a simulated route by computing the Jaccard similarity between its realized edge set and the edge set of each observed route for the same origin–destination pair. A trip is assigned to an observed route only when this similarity score clears both the configured minimum score threshold and the required separation margin; otherwise it is placed in the common unmatched bucket, with any ambiguous classifications logged diagnostically [S3].",
+    "abstained": false,
+    "expected_abstain": false,
+    "abstention_correct": true,
+    "valid_citation_ids": 1,
+    "cited_source_ids": 1,
+    "citation_validity": 1.0,
+    "answer_latency_sec": 6.2094,
+    "total_latency_sec": 6.2094,
+    "fact_coverage": 1.0,
+    "judge_details": [
+      {
+        "fact": "Observed routes are shortlisted using edge-set Jaccard",
+        "covered": true
+      },
+      {
+        "fact": "Shortlisted routes are scored using normalized longest common subsequence and edge-bigram Jaccard",
+        "covered": true
+      },
+      {
+        "fact": "Acceptance uses configurable score threshold and winning margin",
+        "covered": true
+      },
+      {
+        "fact": "Unaccepted routes are unmatched and ambiguous classifications are recorded",
+        "covered": true
+      }
+    ],
+    "judge_status": "ok",
+    "judge_attempts": 1,
+    "judge_fallback_used": false,
+    "judge_error": null
+  },
+  {
+    "id": "q027",
+    "category": "metrics",
+    "difficulty": "medium",
+    "answerable": true,
+    "question": "What does objectiveObservedNoveltyRate=-1 mean?",
+    "gold_sources": [
+      "simulation/README.md",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java"
+    ],
+    "retrieved_sources": [
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java",
+      "simulation/README.md",
+      "simulation/src/main/java/porto/sweep/sim/ObjectiveMetricsAccumulator.java",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java",
+      "simulation/src/main/java/porto/sweep/config/TaxiClassProfile.java"
+    ],
+    "gold_source_rank": 1,
+    "recall_at_1": 1.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 1.0,
+    "retrieval_latency_sec": 0.1244,
+    "answer": "objectiveObservedNoveltyRate=-1 indicates that the observed novelty rate is set to –1, which serves as a sentinel for a missing or undefined value; in this case the code applies a fallback calculation ( clamp01(1.0 − rawStableShareSum) ) rather than clamping the supplied –1 [S3][S4].",
+    "abstained": false,
+    "expected_abstain": false,
+    "abstention_correct": true,
+    "valid_citation_ids": 2,
+    "cited_source_ids": 2,
+    "citation_validity": 1.0,
+    "answer_latency_sec": 9.731,
+    "total_latency_sec": 9.731,
+    "fact_coverage": 1.0,
+    "judge_details": [
+      {
+        "fact": "Observed novelty target is inferred rather than fixed",
+        "covered": true
+      },
+      {
+        "fact": "It is inferred from residual stable-route share per OD",
+        "covered": true
+      }
+    ],
+    "judge_status": "ok",
+    "judge_attempts": 1,
+    "judge_fallback_used": false,
+    "judge_error": null
+  },
+  {
+    "id": "q028",
+    "category": "results",
+    "difficulty": "medium",
+    "answerable": true,
+    "question": "Why should the final replication result not be interpreted as proof that disabling rerouting is universally optimal?",
+    "gold_sources": [
+      "README.md"
+    ],
+    "retrieved_sources": [
+      "README.md",
+      "simulation/README.md",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java",
+      "preprocessing/README.md",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java"
+    ],
+    "gold_source_rank": 1,
+    "recall_at_1": 1.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 1.0,
+    "retrieval_latency_sec": 0.1305,
+    "answer": "The final replication result should not be interpreted as proof that disabling rerouting is universally optimal, because, as stated in the study (see [S1]), the result applies only to the specific Porto network, demand construction, candidate‑route set, and objective weighting used; it does not demonstrate universal optimality.",
+    "abstained": false,
+    "expected_abstain": false,
+    "abstention_correct": true,
+    "valid_citation_ids": 1,
+    "cited_source_ids": 1,
+    "citation_validity": 1.0,
+    "answer_latency_sec": 4.2365,
+    "total_latency_sec": 4.2365,
+    "fact_coverage": 1.0,
+    "judge_details": [
+      {
+        "fact": "Result is specific to the tested Porto network",
+        "covered": true
+      },
+      {
+        "fact": "Depends on demand construction",
+        "covered": true
+      },
+      {
+        "fact": "Depends on candidate-route set",
+        "covered": true
+      },
+      {
+        "fact": "Depends on objective weighting",
+        "covered": true
+      },
+      {
+        "fact": "Research prototype / not universal evidence",
+        "covered": true
+      }
+    ],
+    "judge_status": "ok",
+    "judge_attempts": 1,
+    "judge_fallback_used": false,
+    "judge_error": null
+  },
+  {
+    "id": "q029",
+    "category": "results",
+    "difficulty": "easy",
+    "answerable": true,
+    "question": "Which four routing strategies does the project compare?",
+    "gold_sources": [
+      "README.md",
+      "simulation/README.md"
+    ],
+    "retrieved_sources": [
+      "README.md",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java",
+      "simulation/README.md",
+      "preprocessing/README.md",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java"
+    ],
+    "gold_source_rank": 1,
+    "recall_at_1": 1.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 1.0,
+    "retrieval_latency_sec": 0.1252,
+    "answer": "The study evaluates four routing strategies: **behavioral**, **shortest**, **static_fastest**, and **dynamic_fastest** [S1].",
+    "abstained": false,
+    "expected_abstain": false,
+    "abstention_correct": true,
+    "valid_citation_ids": 1,
+    "cited_source_ids": 1,
+    "citation_validity": 1.0,
+    "answer_latency_sec": 3.3677,
+    "total_latency_sec": 3.3677,
+    "fact_coverage": 1.0,
+    "judge_details": [
+      {
+        "fact": "behavioral",
+        "covered": true
+      },
+      {
+        "fact": "shortest",
+        "covered": true
+      },
+      {
+        "fact": "static_fastest",
+        "covered": true
+      },
+      {
+        "fact": "dynamic_fastest",
+        "covered": true
+      }
+    ],
+    "judge_status": "ok",
+    "judge_attempts": 1,
+    "judge_fallback_used": false,
+    "judge_error": null
+  },
+  {
+    "id": "q030",
+    "category": "results",
+    "difficulty": "medium",
+    "answerable": true,
+    "question": "What additional output files are produced in replication mode?",
+    "gold_sources": [
+      "simulation/README.md"
+    ],
+    "retrieved_sources": [
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java",
+      "simulation/README.md",
+      "preprocessing/1_porto_map_match.py",
+      "preprocessing/README.md",
+      "README.md",
+      "preprocessing/2_infer_background_from_edge_times.py"
+    ],
+    "gold_source_rank": 2,
+    "recall_at_1": 0.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 0.5,
+    "retrieval_latency_sec": 0.1062,
+    "answer": "The replication mode adds four output files that are not created in a normal sweep:  \n\n- **`replication_results.csv`** – detailed results of each replicated run.  \n- **`replication_summary.csv`** – summary statistics across the replicate jobs.  \n- **`best_mean_config.properties`** – properties of the best‑performing configuration (written only when an aggregate winner is available).  \n- **`best_mean_summary.txt`** – a textual summary containing key performance metrics for that winner (also written only when an aggregate winner exists).  \n\nThese files are produced by the calls `writeReplicationResults`, `writeReplicationSummary`, and the block in [S8] that writes the mean‑config and summary text, respectively [S1][S8].",
+    "abstained": false,
+    "expected_abstain": false,
+    "abstention_correct": true,
+    "valid_citation_ids": 2,
+    "cited_source_ids": 2,
+    "citation_validity": 1.0,
+    "answer_latency_sec": 8.2487,
+    "total_latency_sec": 8.2487,
+    "fact_coverage": 1.0,
+    "judge_details": [
+      {
+        "fact": "replication_design.csv",
+        "covered": true
+      },
+      {
+        "fact": "replication_results.csv",
+        "covered": true
+      },
+      {
+        "fact": "replication_summary.csv",
+        "covered": true
+      },
+      {
+        "fact": "best_mean_config.properties when an aggregate winner is available",
+        "covered": true
+      },
+      {
+        "fact": "best_mean_summary.txt when an aggregate winner is available",
+        "covered": true
+      }
+    ],
+    "judge_status": "ok",
+    "judge_attempts": 1,
+    "judge_fallback_used": false,
+    "judge_error": null
+  },
+  {
+    "id": "q031",
+    "category": "implementation",
+    "difficulty": "medium",
+    "answerable": true,
+    "question": "How does the simulator calculate route cost for the shortest benchmark, including its fallback?",
+    "gold_sources": [
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java"
+    ],
+    "retrieved_sources": [
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java",
+      "README.md",
+      "preprocessing/README.md",
+      "simulation/README.md",
+      "preprocessing/4_generate_candidate_paths.py"
+    ],
+    "gold_source_rank": 1,
+    "recall_at_1": 1.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 1.0,
+    "retrieval_latency_sec": 0.1116,
+    "answer": "The shortest benchmark cost is obtained by calling `route.getAvgDistanceM()` on the `RouteData` object. If that value is finite and greater than 0.0, it is returned as the route cost; otherwise the method falls back to a default based on the route’s edge sequence, using `Math.max(1, route.getEdgeSeq().size())` to ensure at least one edge. [S1]",
+    "abstained": false,
+    "expected_abstain": false,
+    "abstention_correct": true,
+    "valid_citation_ids": 1,
+    "cited_source_ids": 1,
+    "citation_validity": 1.0,
+    "answer_latency_sec": 6.3539,
+    "total_latency_sec": 6.3539,
+    "fact_coverage": 1.0,
+    "judge_details": [
+      {
+        "fact": "Uses avgDistanceM when finite and positive",
+        "covered": true
+      },
+      {
+        "fact": "Falls back to at least the route edge count when distance is unavailable or invalid",
+        "covered": true
+      }
+    ],
+    "judge_status": "ok",
+    "judge_attempts": 2,
+    "judge_fallback_used": false,
+    "judge_error": null
+  },
+  {
+    "id": "q032",
+    "category": "implementation",
+    "difficulty": "medium",
+    "answerable": true,
+    "question": "How does static_fastest calculate route cost, including its fallback?",
+    "gold_sources": [
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java"
+    ],
+    "retrieved_sources": [
+      "README.md",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java",
+      "simulation/README.md",
+      "preprocessing/2_infer_background_from_edge_times.py",
+      "simulation/src/main/java/porto/sweep/sim/SweepParameters.java"
+    ],
+    "gold_source_rank": 2,
+    "recall_at_1": 0.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 0.5,
+    "retrieval_latency_sec": 0.1193,
+    "answer": "Static_fastest computes a route’s cost by first looking up a pre‑computed travel time from the edge information (the “free‑flow” edges). If that value is absent, negative or otherwise invalid, it falls back to `estimatePathBaseCost(route.getEdgeSeq(), nowSec)`, which calculates the path cost using default speed assumptions. This fallback provides a deterministic route cost when traffic data are unavailable. [S7] [S5]",
+    "abstained": false,
+    "expected_abstain": false,
+    "abstention_correct": true,
+    "valid_citation_ids": 2,
+    "cited_source_ids": 2,
+    "citation_validity": 1.0,
+    "answer_latency_sec": 8.4035,
+    "total_latency_sec": 8.4035,
+    "fact_coverage": 1.0,
+    "judge_details": [
+      {
+        "fact": "Uses route avgTimeSec when finite and positive",
+        "covered": true
+      },
+      {
+        "fact": "Falls back to estimatePathBaseCost over the edge sequence",
+        "covered": true
+      }
+    ],
+    "judge_status": "ok",
+    "judge_attempts": 1,
+    "judge_fallback_used": false,
+    "judge_error": null
+  },
+  {
+    "id": "q033",
+    "category": "implementation",
+    "difficulty": "medium",
+    "answerable": true,
+    "question": "How does dynamic_fastest calculate route cost at route choice time?",
+    "gold_sources": [
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java"
+    ],
+    "retrieved_sources": [
+      "README.md",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java",
+      "simulation/README.md",
+      "simulation/src/main/java/porto/sweep/sim/SweepParameters.java",
+      "preprocessing/2_infer_background_from_edge_times.py"
+    ],
+    "gold_source_rank": 2,
+    "recall_at_1": 0.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 0.5,
+    "retrieval_latency_sec": 0.0933,
+    "answer": "Dynamic_fastest determines a route’s cost at the moment of choice by invoking `estimatePathTrafficCost(route.getEdgeSeq(), nowSec, liveEdgeFlow)` [S8]. This method iterates over each edge in the candidate’s edge sequence and sums the per‑edge traffic operational costs (derived from the current hour and the live edge flow) to produce a total traffic travel time for that candidate. No behavioral, memory, or habit factors are incorporated in this calculation; the selection is based solely on the computed traffic cost [S2].",
+    "abstained": false,
+    "expected_abstain": false,
+    "abstention_correct": true,
+    "valid_citation_ids": 2,
+    "cited_source_ids": 2,
+    "citation_validity": 1.0,
+    "answer_latency_sec": 5.6608,
+    "total_latency_sec": 5.6608,
+    "fact_coverage": 1.0,
+    "judge_details": [
+      {
+        "fact": "Uses estimatePathTrafficCost over the route edge sequence",
+        "covered": true
+      },
+      {
+        "fact": "Uses current/live edge flow information",
+        "covered": true
+      }
+    ],
+    "judge_status": "ok",
+    "judge_attempts": 1,
+    "judge_fallback_used": false,
+    "judge_error": null
+  },
+  {
+    "id": "q034",
+    "category": "implementation",
+    "difficulty": "hard",
+    "answerable": true,
+    "question": "When a dynamic_fastest taxi reroutes, how is the new suffix selected?",
+    "gold_sources": [
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java"
+    ],
+    "retrieved_sources": [
+      "README.md",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java",
+      "simulation/README.md",
+      "simulation/src/main/java/porto/sweep/sim/SweepParameters.java",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java"
+    ],
+    "gold_source_rank": 2,
+    "recall_at_1": 0.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 0.5,
+    "retrieval_latency_sec": 0.1059,
+    "answer": "When a dynamic_fastest taxi reroutes, the new suffix is chosen by calling `chooseBestRerouteSuffix` (see [S8]), which evaluates the admissible reroute alternatives using current traffic conditions and other dynamic criteria and returns the selected `PathResult newSuffix`.",
+    "abstained": false,
+    "expected_abstain": false,
+    "abstention_correct": true,
+    "valid_citation_ids": 1,
+    "cited_source_ids": 1,
+    "citation_validity": 1.0,
+    "answer_latency_sec": 6.4939,
+    "total_latency_sec": 6.4939,
+    "fact_coverage": 0.75,
+    "judge_details": [
+      {
+        "fact": "Chooses among admissible reroute alternatives",
+        "covered": true
+      },
+      {
+        "fact": "Selects the candidate with the lowest current traffic travel time",
+        "covered": true
+      },
+      {
+        "fact": "Skips the current remaining path",
+        "covered": true
+      },
+      {
+        "fact": "Behavioral beta parameters are ignored for dynamic_fastest rerouting",
+        "covered": false
+      }
+    ],
+    "judge_status": "ok",
+    "judge_attempts": 1,
+    "judge_fallback_used": false,
+    "judge_error": null
+  },
+  {
+    "id": "q035",
+    "category": "implementation",
+    "difficulty": "hard",
+    "answerable": true,
+    "question": "How is the behavioral reroute score computed for an alternative suffix?",
+    "gold_sources": [
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java"
+    ],
+    "retrieved_sources": [
+      "README.md",
+      "simulation/README.md",
+      "preprocessing/run_all_pipeline.py",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java",
+      "simulation/src/main/java/porto/sweep/eval/JaccardEvaluator.java",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java"
+    ],
+    "gold_source_rank": 4,
+    "recall_at_1": 0.0,
+    "recall_at_3": 0.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 0.25,
+    "retrieval_latency_sec": 0.0855,
+    "answer": "The behavioral reroute score for an alternative suffix is derived from the improvement obtained by using that suffix. The simulation estimates the cost of the candidate suffix with `estimatePathCost(newSuffix.edgeSeq, nowSec, liveEdgeFlow, taxi, false)`; the resulting `newCost` is subtracted from the current remaining cost to obtain `improvementSec = currentRemainingCost – newCost`. This improvement (in seconds) is then compared to the configured `rerouteGainThresholdSec`—if it exceeds the threshold the reroute is accepted. [S4]",
+    "abstained": false,
+    "expected_abstain": false,
+    "abstention_correct": true,
+    "valid_citation_ids": 1,
+    "cited_source_ids": 1,
+    "citation_validity": 1.0,
+    "answer_latency_sec": 10.3962,
+    "total_latency_sec": 10.3962,
+    "fact_coverage": 1.0,
+    "judge_details": [
+      {
+        "fact": "Uses expected travel cost and taxi memory penalty",
+        "covered": true
+      },
+      {
+        "fact": "Optionally z-normalizes expected and memory terms",
+        "covered": true
+      },
+      {
+        "fact": "score = -betaTime * expectedTerm - betaMemory * memoryTerm + noise",
+        "covered": true
+      },
+      {
+        "fact": "Reroute noise is currently fixed at 0.0 for deterministic debugging",
+        "covered": true
+      }
+    ],
+    "judge_status": "ok",
+    "judge_attempts": 1,
+    "judge_fallback_used": false,
+    "judge_error": null
+  },
+  {
+    "id": "q036",
+    "category": "implementation",
+    "difficulty": "medium",
+    "answerable": true,
+    "question": "Where are edge-habit counts stored for taxi and collective modes?",
+    "gold_sources": [
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java"
+    ],
+    "retrieved_sources": [
+      "simulation/README.md",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java",
+      "preprocessing/2_infer_background_from_edge_times.py",
+      "preprocessing/3_build_od_route_shares.py"
+    ],
+    "gold_source_rank": 2,
+    "recall_at_1": 0.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 0.5,
+    "retrieval_latency_sec": 0.1073,
+    "answer": "The edge‑habit counts are kept in a Map `String → Integer`.  \n- For a **taxi** state the counts are accessed via the field **`taxi.edgeHabitCounts`**.  \n- For **collective** mode they are returned as **`collectiveEdgeHabitCounts`**, which is provided by the method `edgeHabitCountsForTaxi`.  \n\n[S6]",
+    "abstained": false,
+    "expected_abstain": false,
+    "abstention_correct": true,
+    "valid_citation_ids": 1,
+    "cited_source_ids": 1,
+    "citation_validity": 1.0,
+    "answer_latency_sec": 7.9376,
+    "total_latency_sec": 7.9376,
+    "fact_coverage": 0.6666666666666666,
+    "judge_details": [
+      {
+        "fact": "taxi mode uses the individual taxi edgeHabitCounts map",
+        "covered": true
+      },
+      {
+        "fact": "collective mode uses the shared collectiveEdgeHabitCounts map",
+        "covered": true
+      },
+      {
+        "fact": "off mode returns an empty map / disables habit contribution",
+        "covered": false
+      }
+    ],
+    "judge_status": "ok",
+    "judge_attempts": 1,
+    "judge_fallback_used": false,
+    "judge_error": null
+  },
+  {
+    "id": "q037",
+    "category": "implementation",
+    "difficulty": "hard",
+    "answerable": true,
+    "question": "How is the edge-habit score for a route computed?",
+    "gold_sources": [
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java"
+    ],
+    "retrieved_sources": [
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java",
+      "preprocessing/3_build_od_route_shares.py",
+      "simulation/README.md",
+      "simulation/src/main/java/porto/sweep/eval/JaccardEvaluator.java",
+      "preprocessing/README.md",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java"
+    ],
+    "gold_source_rank": 1,
+    "recall_at_1": 1.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 1.0,
+    "retrieval_latency_sec": 0.1529,
+    "answer": "The edge‑habit score for a route is not recomputed inside the simulation; it is stored as an attribute of the `RouteChoiceFeatures` object (see the constructor in [S1]) and used as a pre‑calculated normalized feature. In practice the score is derived from observed edge‑habit data across all routes (typically a z‑score) and then supplied to the normalizer when scoring routes. This matches how the code references each route’s `edgeHabitScore` in the evaluation step.",
+    "abstained": false,
+    "expected_abstain": false,
+    "abstention_correct": true,
+    "valid_citation_ids": 1,
+    "cited_source_ids": 1,
+    "citation_validity": 1.0,
+    "answer_latency_sec": 10.5099,
+    "total_latency_sec": 10.5099,
+    "fact_coverage": 1.0,
+    "judge_details": [
+      {
+        "fact": "For each nonblank edge, reads its habit count",
+        "covered": true
+      },
+      {
+        "fact": "Adds log1p(count / edgeHabitScale)",
+        "covered": true
+      },
+      {
+        "fact": "Averages the transformed value over considered edges",
+        "covered": true
+      },
+      {
+        "fact": "Returns zero when habit mode is off or the edge sequence is empty",
+        "covered": true
+      }
+    ],
+    "judge_status": "ok",
+    "judge_attempts": 1,
+    "judge_fallback_used": false,
+    "judge_error": null
+  },
+  {
+    "id": "q038",
+    "category": "implementation",
+    "difficulty": "hard",
+    "answerable": true,
+    "question": "How is the distance-detour feature calculated?",
+    "gold_sources": [
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java"
+    ],
+    "retrieved_sources": [
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java",
+      "preprocessing/4_generate_candidate_paths.py",
+      "simulation/README.md",
+      "README.md",
+      "preprocessing/1_porto_map_match.py",
+      "preprocessing/2_infer_background_from_edge_times.py"
+    ],
+    "gold_source_rank": 1,
+    "recall_at_1": 1.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 1.0,
+    "retrieval_latency_sec": 0.1365,
+    "answer": "The distance‑detour feature is defined as the difference between a route’s total length and the shortest distance among its candidate routes. In code this is computed as  \n\n```java\ndouble distanceDetourLogRatio(RouteData route, List<RouteData> candidates) {\n    double routeDistance = route.getAvgDistanceM();          // route’s average distance\n    double minDistance = …;                                   // minimum of candidates’ distances\n    return routeDistance - minDistance;\n}\n```  \n\nwhere `route.getAvgDistanceM()` returns the route’s average distance and each candidate’s distance is obtained from `r.getAvgDistanceM()`. This measures how much longer the selected route is compared to the best alternative [S7].",
+    "abstained": false,
+    "expected_abstain": false,
+    "abstention_correct": true,
+    "valid_citation_ids": 1,
+    "cited_source_ids": 1,
+    "citation_validity": 1.0,
+    "answer_latency_sec": 13.7163,
+    "total_latency_sec": 13.7163,
+    "fact_coverage": 1.0,
+    "judge_details": [
+      {
+        "fact": "Compares route distance with the minimum candidate-route distance",
+        "covered": true
+      },
+      {
+        "fact": "Uses log(max(1, routeDistance/minDistance))",
+        "covered": true
+      },
+      {
+        "fact": "Falls back to edge count when distance is unavailable or invalid",
+        "covered": true
+      }
+    ],
+    "judge_status": "ok",
+    "judge_attempts": 2,
+    "judge_fallback_used": false,
+    "judge_error": null
+  },
+  {
+    "id": "q039",
+    "category": "implementation",
+    "difficulty": "hard",
+    "answerable": true,
+    "question": "How is route complexity calculated?",
+    "gold_sources": [
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java"
+    ],
+    "retrieved_sources": [
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java",
+      "preprocessing/3_build_od_route_shares.py",
+      "README.md",
+      "simulation/README.md",
+      "preprocessing/2_infer_background_from_edge_times.py",
+      "simulation/src/main/java/porto/sweep/sim/SweepParameters.java"
+    ],
+    "gold_source_rank": 1,
+    "recall_at_1": 1.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 1.0,
+    "retrieval_latency_sec": 0.1368,
+    "answer": "According to the simulation code, route complexity is calculated as the logarithm of the ratio of the number of edges in a given route to the smallest edge count among a set of candidate routes (capped at 1). The method `routeComplexityLogRatio` implements this as  \n\n\\[\n\\text{complexity} = \\log\\!\\bigl(\\frac{\\text{edgeCount}}{\\minEdges}\\bigr),\n\\]\n\nwhere `edgeCount` is the number of edges in the route and `minEdges` is the minimum edge count across candidates (or 1 if no finite value exists) [S7].",
+    "abstained": false,
+    "expected_abstain": false,
+    "abstention_correct": true,
+    "valid_citation_ids": 1,
+    "cited_source_ids": 1,
+    "citation_validity": 1.0,
+    "answer_latency_sec": 7.6161,
+    "total_latency_sec": 7.6161,
+    "fact_coverage": 1.0,
+    "judge_details": [
+      {
+        "fact": "Uses number of edges as complexity",
+        "covered": true
+      },
+      {
+        "fact": "Finds the minimum edge count among candidate routes",
+        "covered": true
+      },
+      {
+        "fact": "Returns log(max(1, routeEdgeCount/minCandidateEdgeCount))",
+        "covered": true
+      }
+    ],
+    "judge_status": "ok",
+    "judge_attempts": 5,
+    "judge_fallback_used": true,
+    "judge_error": null
+  },
+  {
+    "id": "q040",
+    "category": "implementation",
+    "difficulty": "medium",
+    "answerable": true,
+    "question": "How are request times generated in immediate mode versus hourly mode?",
+    "gold_sources": [
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java"
+    ],
+    "retrieved_sources": [
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java",
+      "simulation/README.md",
+      "simulation/src/main/java/porto/sweep/config/SweepConfig.java",
+      "preprocessing/1_porto_map_match.py",
+      "simulation/src/main/java/porto/sweep/io/DataRepository.java",
+      "preprocessing/2_infer_background_from_edge_times.py"
+    ],
+    "gold_source_rank": 1,
+    "recall_at_1": 1.0,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "reciprocal_rank": 1.0,
+    "retrieval_latency_sec": 0.1297,
+    "answer": "In **immediate mode** each request time is created by first picking a random day uniformly from `1 … simulationDays` (or `max(1,config.simulationDays)`) and then drawing a uniform value `u` in the interval `[0, sum]` where  \n\n```\nsum = Σ_{h=0}^{23} hourlyDemandWeights[h] .\n```  \n\nThe hour inside that day is found by accumulating the weighted demand until the cumulative sum exceeds `u`; a second uniform draw gives the seconds within the hour (`secWithinHour`). The final timestamp is  \n\n```\nt = day·86400 + hour·3600 + secWithinHour .\n```\n\nIn **hourly mode** the same per‑day sampling logic is applied, but across all days defined by `config.simulationDays`. Thus request times are drawn from the distribution of `hourlyDemandWeights` over the entire simulation horizon rather than being confined to a single day.  \n\n[S1] provides the exact implementation of this algorithm; [S2] describes how immediate versus hourly mode differ in the sampling scope.",
+    "abstained": false,
+    "expected_abstain": false,
+    "abstention_correct": true,
+    "valid_citation_ids": 2,
+    "cited_source_ids": 2,
+    "citation_validity": 1.0,
+    "answer_latency_sec": 10.7686,
+    "total_latency_sec": 10.7686,
+    "fact_coverage": 1.0,
+    "judge_details": [
+      {
+        "fact": "Immediate mode assigns 0.0 seconds to every request",
+        "covered": true
+      },
+      {
+        "fact": "Hourly mode samples a day and hour using hourlyDemandWeights",
+        "covered": true
+      },
+      {
+        "fact": "Samples a random second within the selected hour",
+        "covered": true
+      },
+      {
+        "fact": "Generated request times are sorted before simulation",
+        "covered": true
+      }
+    ],
+    "judge_status": "ok",
+    "judge_attempts": 1,
+    "judge_fallback_used": false,
+    "judge_error": null
+  },
+  {
+    "id": "q041",
+    "category": "unanswerable",
+    "difficulty": "easy",
+    "answerable": false,
+    "question": "What was the weather in Porto on the date the best-performing experiment was run?",
+    "gold_sources": [],
+    "retrieved_sources": [
+      "README.md",
+      "simulation/README.md",
+      "preprocessing/README.md",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java",
+      "preprocessing/run_all_pipeline.py",
+      "simulation/src/main/java/porto/sweep/sim/SweepParameters.java"
+    ],
+    "gold_source_rank": null,
+    "recall_at_1": null,
+    "recall_at_3": null,
+    "recall_at_5": null,
+    "reciprocal_rank": null,
+    "retrieval_latency_sec": 0.0995,
+    "answer": "I don't have enough evidence in the indexed sources to answer that reliably.",
+    "abstained": true,
+    "expected_abstain": true,
+    "abstention_correct": true,
+    "valid_citation_ids": 0,
+    "cited_source_ids": 0,
+    "citation_validity": null,
+    "answer_latency_sec": 2.7931,
+    "total_latency_sec": 2.7931,
+    "fact_coverage": null,
+    "judge_details": [],
+    "judge_status": "not_applicable",
+    "judge_attempts": 0,
+    "judge_fallback_used": false,
+    "judge_error": null
+  },
+  {
+    "id": "q042",
+    "category": "unanswerable",
+    "difficulty": "easy",
+    "answerable": false,
+    "question": "What was the average age of the taxi drivers in the Porto dataset?",
+    "gold_sources": [],
+    "retrieved_sources": [
+      "preprocessing/README.md",
+      "README.md",
+      "simulation/README.md",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java",
+      "simulation/src/main/java/porto/sweep/sim/SweepParameters.java",
+      "simulation/src/main/java/porto/sweep/config/TaxiClassProfile.java"
+    ],
+    "gold_source_rank": null,
+    "recall_at_1": null,
+    "recall_at_3": null,
+    "recall_at_5": null,
+    "reciprocal_rank": null,
+    "retrieval_latency_sec": 0.1253,
+    "answer": "I don't have enough evidence in the indexed sources to answer that reliably.",
+    "abstained": true,
+    "expected_abstain": true,
+    "abstention_correct": true,
+    "valid_citation_ids": 0,
+    "cited_source_ids": 0,
+    "citation_validity": null,
+    "answer_latency_sec": 3.4611,
+    "total_latency_sec": 3.4611,
+    "fact_coverage": null,
+    "judge_details": [],
+    "judge_status": "not_applicable",
+    "judge_attempts": 0,
+    "judge_fallback_used": false,
+    "judge_error": null
+  },
+  {
+    "id": "q043",
+    "category": "unanswerable",
+    "difficulty": "easy",
+    "answerable": false,
+    "question": "Which make and model of GPS device recorded the taxi trajectories?",
+    "gold_sources": [],
+    "retrieved_sources": [
+      "README.md",
+      "preprocessing/README.md",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java",
+      "preprocessing/1_porto_map_match.py",
+      "simulation/README.md"
+    ],
+    "gold_source_rank": null,
+    "recall_at_1": null,
+    "recall_at_3": null,
+    "recall_at_5": null,
+    "reciprocal_rank": null,
+    "retrieval_latency_sec": 0.1077,
+    "answer": "I don't have enough evidence in the indexed sources to answer that reliably.",
+    "abstained": true,
+    "expected_abstain": true,
+    "abstention_correct": true,
+    "valid_citation_ids": 0,
+    "cited_source_ids": 0,
+    "citation_validity": null,
+    "answer_latency_sec": 3.8847,
+    "total_latency_sec": 3.8847,
+    "fact_coverage": null,
+    "judge_details": [],
+    "judge_status": "not_applicable",
+    "judge_attempts": 0,
+    "judge_fallback_used": false,
+    "judge_error": null
+  },
+  {
+    "id": "q044",
+    "category": "unanswerable",
+    "difficulty": "easy",
+    "answerable": false,
+    "question": "How much fuel did the simulated taxis consume in the final experiment?",
+    "gold_sources": [],
+    "retrieved_sources": [
+      "simulation/README.md",
+      "README.md",
+      "preprocessing/README.md",
+      "simulation/src/main/java/porto/sweep/sim/SweepParameters.java",
+      "simulation/src/main/java/porto/sweep/eval/JaccardEvaluator.java",
+      "preprocessing/2_infer_background_from_edge_times.py"
+    ],
+    "gold_source_rank": null,
+    "recall_at_1": null,
+    "recall_at_3": null,
+    "recall_at_5": null,
+    "reciprocal_rank": null,
+    "retrieval_latency_sec": 0.0944,
+    "answer": "I don't have enough evidence in the indexed sources to answer that reliably.",
+    "abstained": true,
+    "expected_abstain": true,
+    "abstention_correct": true,
+    "valid_citation_ids": 0,
+    "cited_source_ids": 0,
+    "citation_validity": null,
+    "answer_latency_sec": 2.2665,
+    "total_latency_sec": 2.2665,
+    "fact_coverage": null,
+    "judge_details": [],
+    "judge_status": "not_applicable",
+    "judge_attempts": 0,
+    "judge_fallback_used": false,
+    "judge_error": null
+  },
+  {
+    "id": "q045",
+    "category": "unanswerable",
+    "difficulty": "easy",
+    "answerable": false,
+    "question": "What were the total CO2 emissions of the final 20-seed replication?",
+    "gold_sources": [],
+    "retrieved_sources": [
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java",
+      "simulation/examples/quickstart.properties",
+      "simulation/README.md",
+      "preprocessing/README.md",
+      "README.md",
+      "preprocessing/2_infer_background_from_edge_times.py"
+    ],
+    "gold_source_rank": null,
+    "recall_at_1": null,
+    "recall_at_3": null,
+    "recall_at_5": null,
+    "reciprocal_rank": null,
+    "retrieval_latency_sec": 0.11,
+    "answer": "I don't have enough evidence in the indexed sources to answer that reliably.",
+    "abstained": true,
+    "expected_abstain": true,
+    "abstention_correct": true,
+    "valid_citation_ids": 0,
+    "cited_source_ids": 0,
+    "citation_validity": null,
+    "answer_latency_sec": 3.9601,
+    "total_latency_sec": 3.9601,
+    "fact_coverage": null,
+    "judge_details": [],
+    "judge_status": "not_applicable",
+    "judge_attempts": 0,
+    "judge_fallback_used": false,
+    "judge_error": null
+  },
+  {
+    "id": "q046",
+    "category": "unanswerable",
+    "difficulty": "easy",
+    "answerable": false,
+    "question": "What was the total taxi-fare revenue represented by the observed trips?",
+    "gold_sources": [],
+    "retrieved_sources": [
+      "simulation/README.md",
+      "README.md",
+      "preprocessing/README.md",
+      "simulation/src/main/java/porto/sweep/sim/ObjectiveMetricsAccumulator.java",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java",
+      "preprocessing/2_infer_background_from_edge_times.py"
+    ],
+    "gold_source_rank": null,
+    "recall_at_1": null,
+    "recall_at_3": null,
+    "recall_at_5": null,
+    "reciprocal_rank": null,
+    "retrieval_latency_sec": 0.1043,
+    "answer": "I don't have enough evidence in the indexed sources to answer that reliably.",
+    "abstained": true,
+    "expected_abstain": true,
+    "abstention_correct": true,
+    "valid_citation_ids": 0,
+    "cited_source_ids": 0,
+    "citation_validity": null,
+    "answer_latency_sec": 2.6312,
+    "total_latency_sec": 2.6312,
+    "fact_coverage": null,
+    "judge_details": [],
+    "judge_status": "not_applicable",
+    "judge_attempts": 0,
+    "judge_fallback_used": false,
+    "judge_error": null
+  },
+  {
+    "id": "q047",
+    "category": "unanswerable",
+    "difficulty": "medium",
+    "answerable": false,
+    "question": "What traffic-signal phase plan was used for each intersection in the simulation?",
+    "gold_sources": [],
+    "retrieved_sources": [
+      "README.md",
+      "simulation/README.md",
+      "preprocessing/2_infer_background_from_edge_times.py",
+      "simulation/src/main/java/porto/sweep/io/DataRepository.java",
+      "preprocessing/README.md",
+      "preprocessing/run_all_pipeline.py"
+    ],
+    "gold_source_rank": null,
+    "recall_at_1": null,
+    "recall_at_3": null,
+    "recall_at_5": null,
+    "reciprocal_rank": null,
+    "retrieval_latency_sec": 0.1042,
+    "answer": "I don't have enough evidence in the indexed sources to answer that reliably.",
+    "abstained": true,
+    "expected_abstain": true,
+    "abstention_correct": true,
+    "valid_citation_ids": 0,
+    "cited_source_ids": 0,
+    "citation_validity": null,
+    "answer_latency_sec": 2.7768,
+    "total_latency_sec": 2.7769,
+    "fact_coverage": null,
+    "judge_details": [],
+    "judge_status": "not_applicable",
+    "judge_attempts": 0,
+    "judge_fallback_used": false,
+    "judge_error": null
+  },
+  {
+    "id": "q048",
+    "category": "unanswerable",
+    "difficulty": "medium",
+    "answerable": false,
+    "question": "How many crashes occurred on the candidate routes during the observation period?",
+    "gold_sources": [],
+    "retrieved_sources": [
+      "simulation/README.md",
+      "README.md",
+      "preprocessing/README.md",
+      "preprocessing/4_generate_candidate_paths.py",
+      "simulation/src/main/java/porto/sweep/sim/ObjectiveMetricsAccumulator.java",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java"
+    ],
+    "gold_source_rank": null,
+    "recall_at_1": null,
+    "recall_at_3": null,
+    "recall_at_5": null,
+    "reciprocal_rank": null,
+    "retrieval_latency_sec": 0.0916,
+    "answer": "I don't have enough evidence in the indexed sources to answer that reliably.",
+    "abstained": true,
+    "expected_abstain": true,
+    "abstention_correct": true,
+    "valid_citation_ids": 0,
+    "cited_source_ids": 0,
+    "citation_validity": null,
+    "answer_latency_sec": 3.7215,
+    "total_latency_sec": 3.7215,
+    "fact_coverage": null,
+    "judge_details": [],
+    "judge_status": "not_applicable",
+    "judge_attempts": 0,
+    "judge_fallback_used": false,
+    "judge_error": null
+  },
+  {
+    "id": "q049",
+    "category": "unanswerable",
+    "difficulty": "medium",
+    "answerable": false,
+    "question": "What percentage of Porto taxi drivers said they preferred familiar routes in interviews?",
+    "gold_sources": [],
+    "retrieved_sources": [
+      "preprocessing/README.md",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java",
+      "README.md",
+      "simulation/README.md",
+      "simulation/src/main/java/porto/sweep/sim/TaxiState.java",
+      "simulation/src/main/java/porto/sweep/config/TaxiClassProfile.java"
+    ],
+    "gold_source_rank": null,
+    "recall_at_1": null,
+    "recall_at_3": null,
+    "recall_at_5": null,
+    "reciprocal_rank": null,
+    "retrieval_latency_sec": 0.1183,
+    "answer": "I don't have enough evidence in the indexed sources to answer that reliably.",
+    "abstained": true,
+    "expected_abstain": true,
+    "abstention_correct": true,
+    "valid_citation_ids": 0,
+    "cited_source_ids": 0,
+    "citation_validity": null,
+    "answer_latency_sec": 2.7108,
+    "total_latency_sec": 2.7108,
+    "fact_coverage": null,
+    "judge_details": [],
+    "judge_status": "not_applicable",
+    "judge_attempts": 0,
+    "judge_fallback_used": false,
+    "judge_error": null
+  },
+  {
+    "id": "q050",
+    "category": "unanswerable",
+    "difficulty": "medium",
+    "answerable": false,
+    "question": "What was the measured queue length at every traffic light during the best simulation run?",
+    "gold_sources": [],
+    "retrieved_sources": [
+      "simulation/src/main/java/porto/sweep/sim/SweepParameters.java",
+      "simulation/examples/quickstart.properties",
+      "simulation/README.md",
+      "README.md",
+      "simulation/src/main/java/porto/sweep/sim/SimulationEngine.java",
+      "simulation/src/main/java/porto/sweep/app/RunSweepMain.java"
+    ],
+    "gold_source_rank": null,
+    "recall_at_1": null,
+    "recall_at_3": null,
+    "recall_at_5": null,
+    "reciprocal_rank": null,
+    "retrieval_latency_sec": 0.0971,
+    "answer": "I don't have enough evidence in the indexed sources to answer that reliably.",
+    "abstained": true,
+    "expected_abstain": true,
+    "abstention_correct": true,
+    "valid_citation_ids": 0,
+    "cited_source_ids": 0,
+    "citation_validity": null,
+    "answer_latency_sec": 4.1395,
+    "total_latency_sec": 4.1395,
+    "fact_coverage": null,
+    "judge_details": [],
+    "judge_status": "not_applicable",
+    "judge_attempts": 0,
+    "judge_fallback_used": false,
+    "judge_error": null
+  }
+]

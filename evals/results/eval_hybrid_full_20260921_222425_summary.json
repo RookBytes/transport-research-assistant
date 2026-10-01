@@ -1,0 +1,26 @@
+{
+  "mode": "full",
+  "questions": 50,
+  "answerable_questions": 40,
+  "unanswerable_questions": 10,
+  "retrieval": {
+    "recall_at_1": 0.775,
+    "recall_at_3": 0.95,
+    "recall_at_5": 1.0,
+    "mrr": 0.8708333333333333
+  },
+  "generation": {
+    "abstention_accuracy": 0.98,
+    "mean_total_latency_sec": 8.504436,
+    "mean_answer_latency_sec": 8.504436,
+    "citation_validity": 1.0,
+    "mean_fact_coverage_local_judge": 0.9604166666666667,
+    "judge_successful_calls": 39,
+    "judge_failed_calls": 0,
+    "answerable_abstentions_scored_zero": 1,
+    "judge_retries": 9,
+    "judge_per_fact_fallbacks": 1,
+    "judge_note": "Fact coverage is graded by the configured local Ollama model and is not an independent human score. Answerable abstentions are scored as zero coverage; judge parse failures are excluded and reported. If batch grading fails twice, expected facts are graded individually as a conservative fallback."
+  },
+  "retriever": "hybrid"
+}

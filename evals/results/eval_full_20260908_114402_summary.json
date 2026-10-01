@@ -1,0 +1,18 @@
+{
+  "mode": "full",
+  "questions": 50,
+  "answerable_questions": 40,
+  "unanswerable_questions": 10,
+  "retrieval": {
+    "recall_at_1": 0.575,
+    "recall_at_3": 0.725,
+    "recall_at_5": 0.85,
+    "mrr": 0.6758333333333333
+  },
+  "generation": {
+    "abstention_accuracy": 0.78,
+    "mean_total_latency_sec": 4.720534,
+    "mean_answer_latency_sec": 4.720534,
+    "citation_validity": 1.0
+  }
+}
